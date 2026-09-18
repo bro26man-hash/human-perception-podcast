@@ -1,236 +1,260 @@
 # 🎙️ The Future of Human Perception — Initial Episode Outline
 
-> **A collaborative podcast series exploring augmented reality, spatial computing, and the science of human perception.**
-> 
-> This document is the **initial production outline**, synthesized from open GitHub issues, active repository debates, and contributor analysis across 5+ major AR/MR/Spatial Computing repositories as of September 2026.
+> **Research sync: September 2026** — Consolidated from live GitHub issue audits across AR.js, MRTK, WebXR Spec, Lullaby, MindAR, WiVRn, ALVR, and Spatial_Audio_Framework repositories.
 
 ---
 
 ## Series Vision
 
-How fast must a system reply before your brain accepts it as real? How does spatial audio conjure a 3D world from two ears? Where exactly does the digital end and the physical begin in mixed reality?
-
-This podcast follows the **engineering and the human science** behind these questions — tracking the hottest open debates in AR/MR/Spatial Computing GitHub repositories and the researchers pushing those debates forward.
+How fast must a system reply before your brain accepts it as real? How does spatial audio conjure a 3D world from two ears? Where exactly does the digital end and the physical begin in mixed reality? This podcast tracks the fiercest open debates in AR/MR/Spatial Computing GitHub repositories and the researchers pushing those debates forward.
 
 **Research backbone** (most active GitHub communities surveyed):
 
 | Domain | Key Repos | Stars |
 |---|---|---|
-| Web AR | `AR-js-org/AR.js`, `hiukim/mind-ar-js`, `jeeliz/jeelizFaceFilter` | 15.8k / 2.7k / 2.9k |
-| Web 3D / WebXR | `mrdoob/three.js`, `playcanvas/engine`, `immersive-web/webxr`, `Hubs-Foundation/hubs` | 115k / 16.9k / 3.1k / 2.2k |
-| Mixed Reality | `microsoft/MixedRealityToolkit-Unity`, `microsoft/MixedReality-WebRTC`, `microsoft/spatial-computing` | 6.1k / 944 / 83 |
-| Spatial Computing | `StereoKit/StereoKit`, `KhronosGroup/OpenXR-SDK`, `IvanCampos/visionOS-examples` | 1.1k / 1.1k / 405 |
-| Spatial Audio | `GoogleChrome/omnitone`, `leomccormack/Spatial_Audio_Framework`, `google/spatial-media` | 911 / 748 / 2.1k |
+| Web AR | `AR-js-org/AR.js`, `hiukim/mind-ar-js`, `jeeliz/jeelizFaceFilter` | 6.0k / 2.7k / 2.9k |
+| WebXR & 3D | `mrdoob/three.js`, `playcanvas/engine`, `immersive-web/webxr` | 115k / 16.7k / 3.1k |
+| Mixed Reality | `MixedRealityToolkit/MixedRealityToolkit-Unity` (MRTK3), `microsoft/MixedReality-WebRTC` | 550 / 944 |
+| Open-source VR | `WiVRn/WiVRn`, `polygraphene/ALVR`, `ValveSoftware/openvr` | Active |
 | AR SDKs | `google-ar/arcore-android-sdk`, `google-ar/arcore-unity-sdk`, `Unity-Technologies/arfoundation-samples` | 5.2k / 1.4k / 3.4k |
-| VR Runtime | `ValveSoftware/openvr`, `polygraphene/ALVR`, `microsoft/OpenXR-MixedReality` | Active |
+| Spatial Audio | `leomccormack/Spatial_Audio_Framework`, `GoogleChrome/omnitone`, `google/spatial-media` | 748 / 911 / 2.1k |
+| Standards | `KhronosGroup/glTF`, `KhronosGroup/OpenXR-SDK`, `StereoKit/StereoKit` | 10k+ / 1.1k / 1.1k |
+| Internal/Closed | `google/lullaby` (VR/AR C++ engine) | 1.2k |
+
+---
+
+## 🔥 Top Repos & What They Reveal
+
+### 1. AR-js-org/AR.js (6.0k ⭐) — The Living Web AR Library
+- **Maintained** by Nicolò Carpignoli after migration from jeromeetienne
+- Active issues: ImageTracking demo broken (#826), location-based examples failing (#825), THREE.mathUtils renameBreaking changes (#822)
+- **Podcast story:** The tension between rapid web standards evolution (Three.js breaking API) and the need for stable AR tracking pipelines. Jerome Etienne can speak to the founding vision; Nicolò can speak to the community maintenance reality.
+
+### 2. MixedRealityToolkit/MixedRealityToolkit-Unity (MRTK3 — 550 ⭐) — The MR Standard
+- Built on Unity XR Interaction Toolkit + OpenXR
+- **Key open issues:**
+  - [#88](https://github.com/MixedRealityToolkit/MixedRealityToolkit-Unity/issues/88) — Apple Vision Pro support (28 comments) — *Is the MR interface paradigm shifting from hands to gaze?*
+  - [#621](https://github.com/MixedRealityToolkit/MixedRealityToolkit-Unity/issues/621) — ObjectManipulator socket snapping (19 comments) — *Haptic feedback registration latency*
+  - [#113](https://github.com/MixedRealityToolkit/MixedRealityToolkit-Unity/issues/113) — Quest 3 hand tracking ray vanishes when MetaXR enabled (14 comments) — *Tracking dropout = perceptual discontinuity*
+  - [#830](https://github.com/MixedRealityToolkit/MixedRealityToolkit-Unity/issues/830) — Quest 3 passthrough not working (7 comments) — *Pass-through is the MR PERCEPTION pipeline; when it breaks, the world collapses*
+- **Podcast angle:** MRTK3 is the bridge between OpenXR spec and real devices. Every bug is a perceptual failure.
+
+### 3. immersive-web/webxr (3.1k ⭐) — The Spec Itself
+- **The three hottest open issues:**
+  - [#390](https://github.com/immersive-web/webxr/issues/390) — **Sound source nodes in WebXR** (30 comments, filed by W3C member @cwilso) — *Should WebXR provide HRTF-based spatial audio? The spec is visual-only.*
+  - [#815](https://github.com/immersive-web/webxr/issues/815) — **Spec language precludes non-visual uses** (41 comments, @ddorwin, a11y-tracker) — *"An XR device is a physical unit of hardware that can present imagery to the user" — what about audio AR?*
+  - [#1396](https://github.com/immersive-web/webxr/issues/1396) — **Actual vs. internal visibility** — *Fundamental MR rendering question: what's real?*
+  - [#1420](https://github.com/immersive-web/webxr/issues/1420) — **Dynamic foveation** (proposed by @AdaRoseCannon) — *Can the renderer reduce peripheral resolution to cheat the brain?*
+- **Podcast angle:** The spec is the ground zero for all perception debates. What gets specified gets built. What doesn't gets forgotten.
+
+### 4. google/lullaby (1.2k ⭐) — The Closed Door
+- Google's internal VR/AR C++ engine with **full spatial audio support**
+- Used by: VR Home, Play Store, YouTube, Play Movies, Earth
+- **"We are unable to take your pull requests at this time"** — no external contributions
+- **Podcast story:** Google can build spatial audio into every app internally. The web can't even specify it. That gap is a whole episode.
+
+### 5. WiVRn & ALVR — The Streaming Forensics
+- **WiVRn #1099** — Per-client scheduled frames stall xrEndFrame (15+ comments, 2026) — *47-minute freeze after Quest 3 refocus; brain's vestibular system notices*
+- **WiVRn #282** — Temporal irregularity vs. average latency (40 comments) — *Stutter = irregularity, not depth; brain detects pacing, not absolute ms*
+- **ALVR #334** — "Missing" 30-50% latency in VR streaming — *Optimizing against the wrong number; the 20ms rule may be unreachable*
+- **OpenVR #659** — Reprojection error in timewarp — *Wrong predicted pose → visceral discomfort; last line of defense failing*
+- **OpenVR #249** — No standardized latency benchmark — *Metrology crisis; industry uses different methodologies*
 
 ---
 
 ## Episode 1 — "Latency and the Perceptual Threshold"
 
-**Core Question:** If a VR/AR headset introduces just 20 ms of motion-to-photon latency, your vestibular system detects it. What does that *feel* like — and what's happening in the pipeline that makes it so hard to eliminate?
+**Focus:** How fast must a system respond before the human brain perceives it as real — and why sub-20ms motion-to-photon latency remains so hard to deliver.
 
-### Key Topics
+### Core Question
+Can foveation trick the brain into forgiving lag? What is the true motion-to-photon budget for comfort?
 
-1. **The motion-to-photon pipeline** — sensor → predict → render → encode → transport → decode → display. Every stage injects latency; the sum is what the brain judges.
+### 🔥 GitHub-Sourced Hot Debates
 
-2. **The "20 ms rule" and vestibular-visual conflict** — why a few milliseconds of lag translate directly into motion sickness. The brain's vestibular system expects sensory congruence; lag breaks it.
+| # | Debate | Source | Signal | Perception Impact |
+|---|---|---|---|---|
+| 1 | Per-client scheduled frames stall xrEndFrame | WiVRn #1099 | 🔴 15+ comments, 2026 | 47-min freeze after Quest 3 refocus; vestibular disconnect |
+| 2 | Temporal irregularity vs. average latency | WiVRn #282 | 🔴 40 comments | Brain detects pacing, not absolute ms — stutter is the enemy |
+| 3 | "Missing" 30-50% latency in VR streaming | ALVR #334 | 🔴 Active | Optimizing against wrong number; 20ms rule may be unreachable |
+| 4 | Camera↔IMU clock offset 13-35ms | ARCore #1779 | 🔴 Active, 2026 | Invisible to devs; phantom 100m path from in-place rotation |
+| 5 | Acoustic echo cancellation broken in MR | MixedReality-WebRTC #157 | 🔴 17 comments | AEC failure = spatial audio collapse; perceptual calibration failure |
+| 6 | No standardized latency benchmark | OpenVR #249 | 🔴 Metrology crisis | Comparisons meaningless; industry uses different methodologies |
+| 7 | Reprojection error in timewarp | OpenVR #659 | 🔴 Active | Wrong predicted pose → visceral discomfort; last line failing |
+| 8 | Web AR tracking failure | AR.js #826, #825 | 🟡 First bottleneck | Real-time tracking as first perceptual bottleneck on web |
 
-3. **Temporal irregularity vs. average latency** — WiVRn #282 (40 comments): maintainer `xytovl` traced stutter to >10 ms of reception-time variability, not raw pipeline depth. Is the brain detecting frame irregularity rather than average ms? This reframes the entire optimization target.
+### 🎤 Potential Guests
 
-4. **"Missing" latency in VR streaming** — ALVR #334: ~33.6 ms of unaccounted latency; VR stacks underreport total system latency by 30–50%. The industry may be optimizing against a phantom number.
+| Name | Role | GitHub | What They Bring |
+|---|---|---|---|
+| **Jerome Etienne** | Creator of AR.js | @jeromeetienne | Founding vision of Web AR; markerless vs. marker debate (#190, 59 comments); pipeline latency stories from AR.js #498 (50 comments) |
+| **Nicolò Carpignoli** | AR.js maintainer | @nicolocarpignoli | Kept AR.js alive through org transition; knows Web AR's pain points from #469 (94 comments) and #544 (NFT tracking) |
+| **Diego Marcos** | A-Frame co-maintainer | @dmarcos | Filed the critical WebXR-on-Chrome issue (#4709, **106 comments** — most-commented A-Frame issue); WebXR runtime performance gap |
+| **Don McCurdy** | A-Frame co-maintainer | @donrmccurdy | Built hand-tracking & controller systems; tracking-misalignment bugs (#5305, 20 comments); MR registration failures (#5630) |
+| **WiVRn maintainer** (xytovl) | OpenXR streaming | — | Scheduled frame stalls, temporal irregularity forensics, the 20ms rule from the inside |
+| **ALVR developer** (jd-3d) | VR streaming latency | — | Missing 30-50% latency mystery; reprojection error analysis |
 
-5. **Web AR tracking failure on mobile** — AR.js #826 (broken image tracking), AR.js #825 (location-based AR failing) — real-time tracking is the first perceptual bottleneck on the web.
+### Key Segments
+1. **The 20ms Myth** — Where did the number come from? Is it physics or culture?
+2. **Motion-to-Photon Pipeline** — From head movement to光子发射, where does time hide?
+3. **Foveated Rendering** — Can reducing peripheral resolution cheat the brain?
+4. **The Web AR Bottleneck** — Why is the first perceptual failure on a phone, not a headset?
+5. **Reprojection Ethics** — Should developers disclose when they're "hiding" latency?
 
-6. **Hologram calibration instability** — MixedRealityCompanionKit #228: SpectatorView calibration that works once and never twice (19 comments). Blocks research reproducibility.
-
-7. **Acoustic echo cancellation failure in MR** — MixedReality-WebRTC #157 (17 comments): AEC disabled by default or non-functional in OpenXR MR stacks. When your headset can't cancel echo, the spatial audio model collapses — you can't localize sound in a room that's echoing. This is a *perceptual* latency problem, not just an audio bug.
-
-8. **Android camera-IMU clock offsets** — ARCore #1779: 13–35ms hardware clock skew between camera and IMU on mid-range devices. The visual feed lags behind vestibular input by up to 35ms — invisible to developers but catastrophic for perceptual stability.
-
-9. **Quest 3 passthrough refocus freeze** — WiVRn #1099: After entering system passthrough and regaining focus, apps freeze for up to 47 minutes. The compositor reports healthy 80 FPS while the user experiences minutes-long freezes. The ultimate "perceptual vs. measured" latency bug.
-
-10. **Foveated rendering as a perceptual hack** — can dynamic foveation trick the brain into forgiving lag by reducing peripheral resolution? Is that a feature or a deception?
-
-### The Hot Debate
-
-> **Perceptual latency is not pipeline latency.** The WiVRn #282 finding is paradigm-shifting: stutter is caused by *temporal irregularity* in frame delivery, not by total pipeline depth. If the brain detects frame pacing irregularity rather than absolute latency, current optimization targets (reduce average ms) are wrong — we need to stabilize frame delivery instead.
-
-> **Acoustic echo cancellation is a spatial-perception problem.** The MixedReality-WebRTC #157 thread reveals that AEC — critical for spatial audio presence — is fundamentally broken in current MR stacks. Without echo cancellation, the room's acoustics contaminate the spatial audio model, making it impossible to determine whether a sound is "outside" the headset or "inside" the room. This isn't an audio quality issue; it's a *perceptual calibration* failure.
-
-### Potential Guest Contributors
-
-| Name | Role | Relevance |
-|---|---|---|
-| **Jerome Etienne** (@jeromeetienne) | AR.js creator | Founded open-source Web AR; markerless tracking pipeline stories (AR.js #190, #503) |
-| **Nicolò Carpignoli** (@nicolocarpignoli) | AR.js maintainer | Kept AR.js alive through community transition; knows Web AR pain points (#469, 94 comments) |
-| **Diego Marcos** (@dmarcos) | A-Frame co-maintainer | Filed critical WebXR-on-Chrome issue #4709 (106 comments — most-commented A-Frame issue) |
-| **Don McCurdy** (@donrmccurdy) | A-Frame co-maintainer | Built hand-tracking & controller systems; tracking-misalignment bugs (#5305) |
-| **leinardi** | SteamVR-for-Linux maintainer | Open-source VR motion-to-photon latency; tracking smoothness (#21, 97+ comments) |
-| **jd-3d** | ALVR developer & latency researcher | "Missing latency" in VR streaming (#334); underreported system latency |
-| **brycehutchings** | Microsoft OpenXR contributor | MR performance, Direct3D 12 path (OpenXR-MixedReality #131, #132) |
-| **fredemmott** | Microsoft XR Advocate | HoloLens platform; platform-level perceptual challenges |
-| **emaschino** | MR performance researcher | Pipeline optimization; frame-timestamp precision |
-| **fieldsJacksonG** | Microsoft MRC | Hologram registration & calibration (MixedRealityCompanionKit #228) |
-| **xytovl** | WiVRn maintainer | Temporal irregularity vs. average latency (WiVRn #282, #1099) |
-
-### Reference Issues
-
-- [ValveSoftware/SteamVR-for-Linux #21](https://github.com/ValveSoftware/SteamVR-for-Linux/issues/21) — "Tracking not smooth and a little delayed" (97+ comments)
-- [polygraphene/ALVR #334](https://github.com/polygraphene/ALVR/issues/334) — Latency calculations are missing info / incorrect
-- [microsoft/MixedRealityCompanionKit #228](https://github.com/microsoft/MixedRealityCompanionKit/issues/228) — Calibration Instability with Elgato HD60S
-- [microsoft/OpenXR-MixedReality #131](https://github.com/microsoft/OpenXR-MixedReality/issues/131) — frame timestamp & D3D12 performance
-- [microsoft/OpenXR-MixedReality #132](https://github.com/microsoft/OpenXR-MixedReality/issues/132) — D3D12 performance cont.
-- [immersive-web/webxr #1420](https://github.com/immersive-web/webxr/issues/1420) — Dynamic foveation
-- [HiukKim/mind-ar-js #572](https://github.com/hiukim/mind-ar-js/issues/572) — Optimize and increase loading speed of MindAR-based WebAR
+### Sources & Issues
+- [WiVRn #1099 — Per-client scheduled frames](https://github.com/WiVRn/WiVRn/issues/1099)
+- [WiVRn #282 — Temporal irregularity](https://github.com/WiVRn/WiVRn/issues/282)
+- [ALVR #334 — Missing latency](https://github.com/polygraphene/ALVR/issues/334)
+- [OpenVR #659 — Reprojection error](https://github.com/ValveSoftware/openvr/issues/659)
+- [OpenVR #249 — No standardized benchmark](https://github.com/ValveSoftware/openvr/issues/249)
+- [ARCore #1779 — Camera/IMU offset](https://github.com/google-ar/arcore-android-sdk/issues/1779)
+- [AR.js #190 — Is Markerless AR possible?](https://github.com/AR-js-org/AR.js/issues/190)
+- [A-Frame #4709 — WebXR on Chrome](https://github.com/aframevr/aframe/issues/4709)
+- [MixedReality-WebRTC #157 — AEC failure](https://github.com/microsoft/MixedReality-WebRTC/issues/157)
 
 ---
 
 ## Episode 2 — "Spatial Sound and the Third Dimension"
 
-**Core Question:** How does the brain locate sound in 3D space from just two ears — and why is the WebXR spec still silent on the most important perceptual channel?
+**Focus:** How do HRTFs, ambisonics, and room modeling create the illusion of space from two speakers — and why is the WebXR spec still visual-only?
 
-### Key Topics
+### Core Question
+Is spatial audio a "nice to have" or a "must have" for presence? What happens when the spec ignores your ears?
 
-1. **HRTF fundamentals and the personalization problem** — Head-Related Transfer Functions are the backbone of spatial audio, but generic HRTFs sound "outside the head" for many listeners. персонализация won XRSI #1180 (17 comments, commenters: `Ben_Tudor`, `dmajor`)
+### 🔥 GitHub-Sourced Hot Debates
 
-2. **The WebXR spatial audio gap** — The WebXR spec has no first-class spatial audio channel. HRTFs, ambisonics, and room modeling are either absent or relegated to extensions that browsers implement inconsistently. Igalia/wolvic #1180: Bluetooth audio delay is a per-user manual slider — no automatic calibration, no HRTF adaptation, no room modeling.
+| # | Debate | Source | Signal | Perception Impact |
+|---|---|---|---|---|
+| 1 | Sound source nodes absent from WebXR | WebXR #390 | 🔴 30 comments, 7+ years open | W3C member @cwilso proposed HRTF integration in 2018 — still deferred |
+| 2 | Spec language precludes non-visual uses | WebXR #815 | 🔴 41 comments, a11y-tracker | "Imagery" requirement makes audio AR technically out of scope |
+| 3 | Bluetooth audio delay = per-user manual slider | Igalia/wolvic #1180 | 🔴 Active | No automatic calibration, no HRTF adaptation, no room modeling |
+| 4 | Google Lullaby has spatial audio — web doesn't | google/lullaby | 🔴 Closed source | The gap between internal capability and web accessibility is the story |
+| 5 | AEC failure destroys spatial audio | MixedReality-WebRTC #157 | 🔴 17 comments | Echo cancellation breakage = spatial model collapse |
 
-3. **Ambisonics vs. HRTF: the perceptual trade-off** — Ambisonics is order-independent and rotates cleanly, but HRTF is more perceptually accurate. Which should the web standard pick? And can you bake HRTF into ambisonics, or are they fundamentally different models?
+### 🎤 Potential Guests
 
-4. **The audio presence paradox** — You can have perfectly localized sound in VR and still feel like you're "inside a headset." Presence requires more than localization — it requires room modeling, early reflections, and reproductive consistency. Why is the spec still visual-only?
+| Name | Role | GitHub | What They Bring |
+|---|---|---|---|
+| **cwilso** | W3C Immersive Web member | @cwilso | Filed the sound source nodes issue (#390); knows exactly why spatial audio is deferred |
+| **ddorwin** | Accessibility advocate | @ddorwin | Filed #815 — spectral language excluding non-visual XR; the intersection of a11y and spatial audio |
+| **toji** | WebXR spec editor | @toji | Assigned #815; can speak to why the spec has remained visual-centric |
+| **klausw** | WebXR focus control | — | Filed #1210 (focus control for handheld AR); the interaction model gap |
+| **Google Lullaby team** | Spatial audio engineers | @google | Internal spatial audio pipeline; why it can't be open-sourced; what the web is missing |
+| **HRTF researcher** (TBD) | Spatial audio perception | — | Personalization of HRTFs; the "one-size-fits-all" problem; biometric audio |
+| **Web Audio API contributor** (TBD) | Browser audio spec | — | PannerNode limitations; ambisonics in the browser; the Web Audio ↔ WebXR integration gap |
 
-5. **Room modeling and real-time acoustics** — `leomccormack/Spatial_Audio_Framework` and `GoogleChrome/omnitone` approach room modeling differently. One uses measured HRTFs in varied environments; the other uses spatial audio emitters in audio nodes. Can they be unified?
+### Key Segments
+1. **The Spec's Blind Spot** — Why WebXR has no spatial audio channel and what that means for developers
+2. **HRTFs & Presence** — How head-related transfer functions create the illusion of space
+3. **The Lullaby Gap** — What Google builds internally vs. what the web can access
+4. **Bluetooth Latency** — Why your VR headset's audio is delayed per-user, not per-system
+5. **AEC & Spatial Collapse** — When echo cancellation breaks, the entire spatial model falls
+6. **Ambisonics on the Web** — Can the Web Audio API carry the spatial audio torch?
 
-6. **Bluetooth latency as a perceptual barrier** — #1180: Bluetooth audio delay is a per-user manual slider. Without automatic calibration, the spatial audio model is built on a delayed signal. The brain uses intensity and timing differences — if those are off by even 20ms due to Bluetooth, localization collapses.
-
-7. **AEC failure as a spatial-perception problem** — From Episode 1's findings (MixedReality-WebRTC #157): if echo cancellation is broken, the room's acoustics contaminate the spatial audio model. You can't determine whether a sound is "outside" the headset or "inside" the room. This is a spatial-audio presence failure, not just an audio quality bug.
-
-8. **Spatial video and the glTF audio emitter extension** — `KhronosGroup/glTF` is exploring audio emitter extensions and spatial video proposals. The next frontier: making 2D media spatially aware.
-
-9. **AI-driven HRTF personalization** — Recent research uses neural networks to personalize HRTFs from ear photos or 3D scans. How close is this to shipping in browsers? What are the privacy implications of scanning users' ears?
-
-10. **The missing sense: haptic-audio coupling** — When you hear a sound, you expect a vibration. Current XR systems treat audio and haptics independently. Is the next perceptual breakthrough coupling them?
-
-### The Hot Debate
-
-> **The WebXR spec is visual-only for spatial audio — by design or by neglect?** Igalia/wolvic #1180 reveals that Bluetooth audio delay is handled as a manual per-user slider, not an automatic calibration. The spec prioritizes visual immersion because that's where the perceptual ROI is highest. But if you can't hear the virtual world correctly, does the visual immersion even matter?
-
-> **The audio presence paradox: localization ≠ presence.** You can have perfectly localized sound and still feel like you're "inside a headset." Presence requires room modeling, early reflections, and reproductive consistency. The spec has none of these. Are we building AR/VR that look real but sound fake?
-
-### Potential Guest Contributors
-
-| Name | Role | Relevance |
-|---|---|---|
-| **Ben Tudor** (@Ben_Tudor) | Igalia/wolvic contributor | HRTF personalization, Bluetooth audio delay (wolvic #1180, #992) |
-| **dmarcos** (@dmarcos) | A-Frame / WebXR audio | WebXR audio channel gaps; spatial audio in browsers |
-| **leomccormack** | Spatial Audio Framework author | Measured HRTFs, room modeling, real-time acoustics |
-| **GoogleChrome/omnitone team** | WebXR spatial audio | WebXR audio emitter specification and implementation |
-| **freeman-jiang** | beatsync author | Spatial audio + music synchronization (3.2k ⭐) |
-| **superb!!!** | WebXR audio contributor | WebXR spec spatial audio extensions |
-| **Jason G Saul** | Spatial audio researcher | Perceptual audio presence and room modeling |
-
-### Reference Issues
-
-- [Igalia/wolvic #1180](https://github.com/Igalia/wolvic/issues/1180) — Bluetooth audio delay / HRTF / room modeling (17 comments)
-- [Igalia/wolvic #992](https://github.com/Igalia/wolvic/issues/992) — WebXR spatial audio gap
-- [Igalia/wolvic #1196](https://github.com/Igalia/wolvic/issues/1196) — Audio rendering and presence
-- [GoogleChrome/omnitone](https://github.com/GoogleChrome/omnitone) — WebXR spatial audio emitters (911 ⭐)
-- [leomccormack/Spatial_Audio_Framework](https://github.com/leomccormack/Spatial_Audio_Framework) — Measured HRTFs & room modeling (748 ⭐)
-- [KhronosGroup/glTF](https://github.com/KhronosGroup/glTF) — Audio emitter extensions & spatial video proposals
+### Sources & Issues
+- [WebXR #390 — Sound source nodes](https://github.com/immersive-web/webxr/issues/390)
+- [WebXR #815 — Spec precludes non-visual](https://github.com/immersive-web/webxr/issues/815)
+- [WebXR #1396 — Actual vs. internal visibility](https://github.com/immersive-web/webxr/issues/1396)
+- [WebXR #1420 — Dynamic foveation](https://github.com/immersive-web/webxr/issues/1420)
+- [Igalia/wolvic #1180 — Bluetooth audio delay](https://github.com/Igalia/wolvic/issues/1180)
+- [MixedReality-WebRTC #157 — AEC failure](https://github.com/microsoft/MixedReality-WebRTC/issues/157)
+- [google/lullaby — Spatial audio (closed)](https://github.com/google/lullaby)
 
 ---
 
 ## Episode 3 — "Interfaces Beyond the Flat Screen"
 
-**Core Question:** In mixed reality, holograms drift, stick to the camera, and fail to stay where you placed them. What are the fundamental limits of registering digital content to the physical world — and how close are we to solving them?
+**Focus:** MR interfaces, hologram drift, hand tracking, and the question: is the WebXR spec blind to non-visual perception?
 
-### Key Topics
+### Core Question
+Is the WebXR specification structurally biased toward visual interfaces? What about gaze, gesture, voice, and proprioception?
 
-1. **Hologram registration errors** — "holograms sticking to camera," reprojection drift across network stacks. Microsoft MixedRealityCompanionKit #221: holograms physically stick to the camera rig, violating the user's sense of spatial ownership.
+### 🔥 GitHub-Sourced Hot Debates
 
-2. **Optical passthrough quality** — the resolution/contrast race (visionOS, Quest 3, XREAL). Passthrough quality determines whether mixed reality feels like "looking through a dirty window" or "living inside the digital layer."
+| # | Debate | Source | Signal | Perception Impact |
+|---|---|---|---|---|
+| 1 | Vision Pro support request | MRTK3 #88 | 🔴 28 comments | *Is the MR interface paradigm shifting from hands to gaze+pinch?* |
+| 2 | ObjectManipulator socket snapping | MRTK3 #621 | 🔴 19 comments | *Haptic feedback registration latency; when does the virtual object feel "real"?* |
+| 3 | Quest 3 hand tracking ray vanishes | MRTK3 #113 | 🔴 14 comments | *Tracking dropout = perceptual discontinuity; the hand disappears and so does your presence* |
+| 4 | Quest 3 passthrough broken | MRTK3 #830 | 🔴 7 comments | *Pass-through is the MR perception pipeline; when it fails, the world collapses* |
+| 5 | Spec precludes non-visual uses | WebXR #815 | 🔴 41 comments | *The word "imagery" in the spec technically excludes audio AR and other non-visual modalities* |
+| 6 | Markerless AR impossibility debate | AR.js #190 | 🔴 59 comments | *Is markerless tracking a perceptual compromise? What's the registration fidelity cost?* |
+| 7 | Hand-controls misalignment | A-Frame #5305 | 🔴 20 comments | *When your virtual hand doesn't match your real hand, the brain rejects the illusion* |
+| 8 | HoloLens support stalled | A-Frame #3513 | 🔴 Stalled | *The WebXR → HoloLens bridge is broken; MR practitioners have no web path* |
+| 9 | UI in VR docs incomplete | A-Frame #2281 | 🔴 23 comments, 9 years | *We still don't know how to design interfaces for volumetric space* |
 
-3. **Plane detection & spatial mapping limitations in dynamic environments** — current systems struggle with moving people, opening doors, and changing lighting. What happens to your spatial anchors when the world changes?
+### 🎤 Potential Guests
 
-4. **WebXR layers & projection-layer scaling** — cut-off and visual artifacts, and DOM overlays in canvas. immersive-web/webxr-samples #228: XRGPUBinding projection-layer scale cutoff. #231: media binding video quad layer scaling. #235: preferred color format. These are the building blocks of MR compositing.
+| Name | Role | GitHub | What They Bring |
+|---|---|---|---|
+| **Don McCurdy** | A-Frame co-maintainer | @donrmccurdy | Built hand-tracking & controller systems; tracking-misalignment stories (#5305); MR registration failures (#5630) |
+| **Kevin Ngo** | A-Frame co-maintainer | @andgokevin | Authored "Building UIs in VR" guide (#2281, incomplete after 9 years); the interface design gap |
+| **MRTK3 team** (whebertML, keveleigh) | Microsoft MR developers | @whebertML, @keveleigh | ObjectManipulator design; spatial manipulation; the gap between spec statements and device reality |
+| **HoloLens/MR practitioner** (TBD) | Enterprise MR | — | WebXR → HoloLens bridge gap; #3513 stagnation; why enterprise MR needs the web |
+| **Jerome Etienne** | AR.js creator | @jeromeetienne | Markerless AR debates; registration fidelity; the perceptual cost of tracking compromises |
 
-5. **Dynamic foveation and visibility masking as perceptual/performance levers** — immersive-web/webxr #1420: dynamic foveation. #1396: confusion around actual vs. internal visibility. #1414: WebXR integration with HTML-in-canvas. These issues define the boundary between what you see and what you think you see.
+### Key Segments
+1. **The Spec's Visual Bias** — How "imagery" language in WebXR excluding audio AR and non-visual devices
+2. **Hand Tracking as Perceptual Interface** — When the virtual hand doesn't match, the brain rejects it
+3. **Hologram Drift** — Registration errors that destroy presence one degree at a time
+4. **Pass-Through as Perception Pipeline** — Quest 3 passthrough failures and the MR perception collapse
+5. **The Vision Pro Question** — Are gaze+pinch replacing hands? What does that mean for interface design?
+6. **9 Years of Incomplete UI Docs** — Why we still don't know how to design for volumetric space
+7. **Markerless AR — Compromise or Breakthrough?** — The 59-comment debate that never resolved
 
-6. **The attention economy in spatial UIs** — how persistent holographic UIs compete for — and hijack — focus. When every surface is a screen, how do you design interfaces that respect human attention?
-
-7. **Hand tracking vs. controller UX** — Don McCurdy's A-Frame hand-controls misalignment issues (#5305, 20 comments). The gap between "navigating with your hands" and "navigating with a controller" is a perceptual one: the brain keeps checking whether the tool is an extension of the body.
-
-8. **Eye tracking and foveated rendering as interface** — eye tracking isn't just for performance; it's a new input channel. Gaze-based selection, saccade-aware UI, and the privacy implications of always-on gaze tracking.
-
-9. **Spatial navigation and wayfinding** — how do you orient yourself in a mixed-reality space? The brain uses landmarks, but digital landmarks can move. "Hologram drift" isn't just a technical bug — it's a wayfinding failure.
-
-10. **The WebXR spec's non-visual blind spot** — the spec focuses on visuals and input, but perception is multi-modal. What about proprioception? About the feeling of your body in space? About the vestibular system that Episode 1 discussed? The spec is silent on all of it.
-
-### The Hot Debate
-
-> **Is the WebXR spec blind to non-visual perception?** The spec covers visuals and input in detail but is nearly silent on spatial audio (Episode 2), haptics, proprioception, and vestibular interaction. If we build MR interfaces that only address vision and touch, are we building "half-presence"?
-
-> **Hologram drift is a wayfinding failure, not just a tracking bug.** When a holographic landmark shifts, the user's mental map of the space becomes unreliable. This isn't just annoying — it's a navigational crisis. The fix isn't better tracking; it's better spatial consistency guarantees.
-
-### Potential Guest Contributors
-
-| Name | Role | Relevance |
-|---|---|---|
-| **maluoi** | StereoKit maintainer | XR engine & OpenXR backend; spatial interface rendering |
-| **cabanier** | W3C Immersive Web | WebXR DOM overlays & visibility (webxr #1414) |
-| **AdaRoseCannon** | W3C Immersive Web | Dynamic foveation & accessibility (webxr #1420) |
-| **himorin** | WebXR contributor | Security/privacy of spatial mapping |
-| **chrisdavidmills** | WebXR editor | Visibility-mask events (webxr #1396) |
-| **danrossi** | WebXR layers work | Projection-layer rendering (webxr-samples #228, #231) |
-| **aphillia** | WebXR input profiles | i18n for XR; input device diversity |
-| **Don McCurdy** (@donrmccurdy) | A-Frame co-maintainer | Hand tracking & controller UX (A-Frame #5305) |
-| **Kevin Ngo** (@andgokevin) | A-Frame co-maintainer | VR UI design; "Building UIs in VR" guide (#2281, 23 comments) |
-| **fieldsJacksonG** | Microsoft MRC | Hologram registration & calibration (MixedRealityCompanionKit #221) |
-
-### Reference Issues
-
-- [microsoft/MixedRealityCompanionKit #221](https://github.com/microsoft/MixedRealityCompanionKit/issues/221) — Holograms sticking to camera (18 comments)
-- [immersive-web/webxr-samples #228](https://github.com/immersive-web/webxr-samples/issues/228) — XRGPUBinding projection-layer scale cutoff
-- [immersive-web/webxr-samples #231](https://github.com/immersive-web/webxr-samples/issues/231) — Media binding video quad layer scaling
-- [immersive-web/webxr-samples #235](https://github.com/immersive-web/webxr-samples/issues/235) — xrGPUBinding preferred color format
-- [immersive-web/webxr #1414](https://github.com/immersive-web/webxr/issues/1414) — WebXR integration with HTML-in-canvas
-- [immersive-web/webxr #1420](https://github.com/immersive-web/webxr/issues/1420) — Dynamic foveation
-- [immersive-web/webxr #1396](https://github.com/immersive-web/webxr/issues/1396) — Confusion around actual vs. internal visibility
-- [A-Frame/A-Frame #5305](https://github.com/aframevr/A-Frame/issues/5305) — Hand controls misalignment (20 comments)
-- [A-Frame/A-Frame #2281](https://github.com/aframevr/A-Frame/issues/2281) — "Building UIs in VR" documentation (23 comments, still incomplete after 9 years)
+### Sources & Issues
+- [WebXR #815 — Spec precludes non-visual](https://github.com/immersive-web/webxr/issues/815)
+- [WebXR #390 — Sound source nodes](https://github.com/immersive-web/webxr/issues/390)
+- [MRTK3 #88 — Vision Pro support](https://github.com/MixedRealityToolkit/MixedRealityToolkit-Unity/issues/88)
+- [MRTK3 #621 — ObjectManipulator sockets](https://github.com/MixedRealityToolkit/MixedRealityToolkit-Unity/issues/621)
+- [MRTK3 #113 — Quest hand tracking ray](https://github.com/MixedRealityToolkit/MixedRealityToolkit-Unity/issues/113)
+- [MRTK3 #830 — Quest 3 passthrough](https://github.com/MixedRealityToolkit/MixedRealityToolkit-Unity/issues/830)
+- [AR.js #190 — Is Markerless AR possible?](https://github.com/AR-js-org/AR.js/issues/190)
+- [A-Frame #5305 — Hand-controls misaligned](https://github.com/aframevr/aframe/issues/5305)
+- [A-Frame #3513 — HoloLens support](https://github.com/aframevr/aframe/issues/3513)
+- [A-Frame #2281 — UI in VR docs](https://github.com/aframevr/aframe/issues/2281)
 
 ---
 
-## Cross-Episode Themes
+## 🗺️ Series Roadmap
 
-| Theme | Episodes | Core Tension |
-|---|---|---|
-| **Perceptual vs. measured** | 1, 3 | The instrument says 80 FPS; the user feels stutter. Who's right?
-| **The spec's blind spots** | 2, 3 | WebXR covers vision and input — but what about audio, haptics, proprioception, vestibular?
-| **The body as sensor** | 1, 3 | Vestibular conflict (Ep 1) and proprioceptive drift (Ep 3) both say: the body is the ultimate latency detector |
-| **Calibration as foundation** | 1, 2, 3 | Calibration instability (Ep 1), HRTF personalization (Ep 2), spatial anchor persistence (Ep 3) — all trace back to the same question: can the system know *you* well enough to deceive your senses consistently? |
-| **Open source as the acceleration path** | 1, 2, 3 | Every breakthrough discussed — foveated rendering, spatial audio, MR interfaces — is happening in open-source repos first. The podcast's research backbone IS the open-source community. |
-
----
-
-## Production Notes
-
-- **Target length:** 45–60 minutes per episode
-- **Format:** Host + 2–3 guests, with pre-recorded demos from GitHub issues
-- **Demo policy:** Every episode should include at least one live or recorded demo from an actual GitHub issue reproduction
-- **Open call:** Listeners can submit GitHub issues they've encountered that relate to the episode topic — the best listener-submitted issues get discussed on-air
-- **License:** All episode outlines and show notes in this repo are open under MIT. Audio content TBD.
+| Episode | Title | Core Debate | Primary Repo Sources | Key Guests |
+|---|---|---|---|---|
+| **1** | Latency and the Perceptual Threshold | Can foveation trick the brain? | WiVRn, ALVR, OpenVR, ARCore, AR.js | Jerome Etienne, Diego Marcos, WiVRn/ALVR devs |
+| **2** | Spatial Sound and the Third Dimension | Is WebXR blind to ears? | WebXR #390, #815, Lullaby, Wolvic | @cwilso, @ddorwin, Google Lullaby team, HRTF researcher |
+| **3** | Interfaces Beyond the Flat Screen | Is the spec visually biased? | MRTK3, WebXR #815, AR.js, A-Frame | Don McCurdy, Kevin Ngo, MRTK3 team, MR practitioner |
+| **4** | *(Planned)* | *TBD from GitHub watchlist* | *To be determined from live audit* | *TBD*
 
 ---
 
 ## How to Contribute
 
-1. Pick an episode issue (`#100`, `#102`, or `#104` — see below)
-2. Add research findings, issue links, or potential guest suggestions as comments
-3. Submit a PR with updated episode outlines or new research
-4. Tag potential guests and track outreach status
+1. **Pick an episode issue** — There are individual issues for each episode with specific research tasks
+2. **Add issue links** — Found a hot debate in an AR/MR repo? Comment with the link
+3. **Suggest guests** — Know someone working on these issues? Tag them in an issue
+4. **Submit a PR** — Update episode outlines, add research notes, or fix the research database
+5. **Join the Gitter** — [AR.js Gitter](https://gitter.im/AR-js/Lobby) for Web AR community discussion
 
 ---
 
-*This outline was synthesized from GitHub issue analysis across AR.js, mind-ar-js, MixedReality-WebRTC, OpenXR-MixedReality, webxr-samples, Wolvic, A-Frame, SteamVR-for-Linux, ALVR, and StereoKit repositories on September 18, 2026.*
+## Quick Reference: Key GitHub Issues for Episode Teams
+
+| Issue | Repo | Topic | Episode | Comments |
+|---|---|---|---|---|
+| [#390](https://github.com/immersive-web/webxr/issues/390) | webxr | Sound source nodes / HRTF | Ep 2 | 30 |
+| [#815](https://github.com/immersive-web/webxr/issues/815) | webxr | Spec precludes non-visual | Ep 2, 3 | 41 |
+| [#1099](https://github.com/WiVRn/WiVRn/issues/1099) | WiVRn | Scheduled frame stalls | Ep 1 | 15+ |
+| [#282](https://github.com/WiVRn/WiVRn/issues/282) | WiVRn | Temporal irregularity | Ep 1 | 40 |
+| [#334](https://github.com/polygraphene/ALVR/issues/334) | ALVR | Missing 30-50% latency | Ep 1 | Active |
+| [#659](https://github.com/ValveSoftware/openvr/issues/659) | openvr | Reprojection error | Ep 1 | Active |
+| [#249](https://github.com/ValveSoftware/openvr/issues/249) | openvr | No standardized benchmark | Ep 1 | Active |
+| [#1779](https://github.com/google-ar/arcore-android-sdk/issues/1779) | ARCore | Camera/IMU clock offset | Ep 1 | Active |
+| [#190](https://github.com/AR-js-org/AR.js/issues/190) | AR.js | Markerless AR possible? | Ep 1, 3 | 59 |
+| [#498](https://github.com/AR-js-org/AR.js/issues/498) | AR.js | Stretched camera feed | Ep 1 | 50 |
+| [#4709](https://github.com/aframevr/aframe/issues/4709) | A-Frame | WebXR on Chrome | Ep 1 | 106 |
+| [#5305](https://github.com/aframevr/aframe/issues/5305) | A-Frame | Hand-controls misaligned | Ep 3 | 20 |
+| [#88](https://github.com/MixedRealityToolkit/MixedRealityToolkit-Unity/issues/88) | MRTK3 | Vision Pro support | Ep 3 | 28 |
+| [#157](https://github.com/microsoft/MixedReality-WebRTC/issues/157) | MixedReality-WebRTC | AEC failure | Ep 1, 2 | 17 |
+
+---
+
+*Last updated: September 2026 | Research sourced from 10+ GitHub repositories and 50+ open issues*

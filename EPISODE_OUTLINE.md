@@ -1,134 +1,214 @@
 # 🎙️ The Future of Human Perception — Episode Outline
 
-## Overview
-
-This podcast explores the engineering and human science behind how technology reshapes perception. Each episode is grounded in real open debates from the most active GitHub repositories in AR, spatial computing, and perceptual science.
+## Podcast Mission
+Exploring the engineering and human science behind how technology reshapes perception — through deep-dive conversations with the developers and researchers building the future of AR, spatial computing, and mixed reality.
 
 ---
 
 ## Episode 1 — "Latency and the Perceptual Threshold"
+**Status:** 🟡 Planned  
+**Duration Target:** 45 min  
+**Key Debate:** *Can foveation trick the brain into forgiving lag?*
 
-**Focus:** Motion-to-photon latency and the 20ms rule
+### Core Topics
+1. **Motion-to-Photon Latency & the 20ms Rule**
+   - The neuroscience: why 20ms is the perceptual cliff for VR sickness
+   - How AR.js and MindAR handle (or fail) real-time tracking latency on mobile
+   - Google Lullaby's ECS architecture for sub-frame rendering pipelines
 
-**Core Question:** Can foveation and reprojection trick the brain into forgiving lag — or is the 20ms threshold a hard physical limit?
+2. **Foveated Rendering as a Latency Hack**
+   - fovea-based rendering pipelines (Tobii, Meta Quest Pro)
+   - Can the brain's perceptual compression forgive inconsistent frame timing?
+   - The trade-off: visual fidelity vs. subjective presence
 
-### Key Topics
-- Motion-to-photon (MTP) latency: what it is, why 20ms is the magic number
-- Foveated rendering as a latency cheat — trading peripheral detail for speed
-- Async reprojection vs. direct rendering — the SteamVR-for-Linux debate (issue #21: "Tracking not smooth and a little delayed," 97 comments, 24 👍)
-- OpenTrack's 2025.1 release saga (issue #2030: 174 comments) — Qt 6 migration, camera bugs, and the architecture debt behind perceptual lag
-- The vestibular-ocular reflex: why latency makes you nauseous, not just annoyed
+3. **Tracking Latency in Web AR**
+   - MindAR issue #428: *"switching phone orientation makes detection terrible"* — a real-world case study in perceptual lag (https://github.com/hiukim/mind-ar-js/issues/428)
+   - AR.js NFT tracking (issue #544): 27-comment debate on natural feature tracking latency vs. marker-based approaches
+   - The gap between promising specs and on-device reality
 
-### GitHub Evidence
-| Repo | Issue | Debate |
+4. **The Future: Predictive Tracking & Neural Rendering**
+   - Machine-learning-assisted motion prediction (MediaPipe, TrueDepth)
+   - How will the next-gen WebXR API address latency at the protocol level?
+
+### 🎤 Potential Guests
+- **Jerome Etienne** (@jeromeetienne) — Creator of AR.js, pioneer of Web AR  
+- **Nicolò Carpignoli** (@nicolocarpignoli) — AR.js maintainer, community organizer  
+- **Hiukim** (@hiukim) — MindAR creator, solo developer fighting for open Web AR  
+- **Google Lullaby team** — C++ VR/AR engineers behind spatial audio + rendering stacks  
+- **Tobii Spatial Computing team** — foveated rendering experts  
+
+### 📚 GitHub Research Backbone
+- [AR.js Issue #469 — "Ensure the future of AR.js"](https://github.com/jeromeetienne/AR.js/issues/469) (94 comments, 22 👀, labeled `critical`) — The sustainability debate that underpins all open-source AR latency improvement
+- [AR.js Issue #544 — "NFT (Natural Feature Tracking) on AR.js"](https://github.com/jeromeetienne/AR.js/issues/544) (27 comments) — Tracking accuracy vs. latency tradeoffs
+- [MindAR Issue #428 — "switching phone orientation makes detection terrible"](https://github.com/hiukim/mind-ar-js/issues/428) (3 comments, 2 👀) — Real user experiencing perceptual latency in orientation tracking
+- [MindAR Issue #537 — "Render the rest of the A-Frame Scene outside the MindAR Target"](https://github.com/hiukim/mind-ar-js/issues/537) — MR compositing and latency in mixed environments
+- [Google Lullaby README](https://github.com/google/lullaby) — Spatial audio + ECS architecture documentation
+
+### 🎬 Segment Structure
+| Segment | Time | Focus |
 |---|---|---|
-| ValveSoftware/SteamVR-for-Linux | [#21](https://github.com/ValveSoftware/SteamVR-for-Linux/issues/21) | HMD tracking delayed & unsmooth despite AsyncReprojection |
-| opentrack/opentrack | [#2030](https://github.com/opentrack/opentrack/issues/2030) | Release process, Qt 6 port, architectural debt in tracking pipeline |
-| ValveSoftware/openvr | [General](https://github.com/ValveSoftware/openvr) | OpenVR SDK reproduction timing and compositor settings |
+| Cold Open | 3 min | "Have you ever felt nauseous in VR? That's 20ms failing you." |
+| The Neuroscience of Latency | 10 min | How the brain constructs presence — and where it breaks |
+| The Engineering Reality | 15 min | What AR.js, MindAR, and Lullaby actually achieve on-device |
+| The Debate: Foveation vs. Full Rendering | 10 min | Is the brain the final renderer? |
+| Future Gazing | 7 min | Neural rendering, predictive tracking, WebXR next-gen |
+| Checkout | 3 min | Links, credits, next episode teaser |
 
-### Potential Guests
-- **sthalik** — OpenTrack maintainer (issue author, community member). Deep knowledge of tracking pipeline architecture and the Qt 6 migration saga.
-- **leinardi** — SteamVR-for-Linux issue reporter (97 comments on tracking latency). Passionate about the Linux VR experience and reprojection timing.
-- **reduz (Juan Linietsky)** — Godot Engine co-creator. Can speak to how 3D engines handle frame timing and the perceptual impact of rendering latency.
-
-### Debate Table
-| Position | Argument |
-|---|---|
-| **Foveation is enough** |渲染 only 2° of high-res detail saves 60-70% GPU time, easily hitting 20ms for the majority of users |
-| **Foveation is a crutch** | It masks the problem for static gaze but fails during fast head movements — the exact moments that matter |
-| **17ms is the real limit** | Vestibular-visual conflict becomes unbearable below 17ms; 20ms is polite, not physiological |
-| **Reprojection IS the future** | AI-driven frame generation (DLSS Frame Generation, similar) will make 20ms irrelevant within 3 years |
+### 📝 Pre-Recording Tasks
+- [ ] Interview Jerome Etienne on AR.js origins and the 60fps promise
+- [ ] Review MindAR's KnownIssues.md for documented latency caveats
+- [ ] Pull Google Lullaby's spatial audio design docs
+- [ ] Reference WebXR spec's latency-relevant sections
+- [ ] Prepare foveated rendering demo clips
 
 ---
 
 ## Episode 2 — "Spatial Sound and the Third Dimension"
+**Status:** 🟡 Planned  
+**Duration Target:** 45 min  
+**Key Debate:** *Why is the WebXR spec still visual-only for spatial audio?*
 
-**Focus:** HRTFs, ambisonics, and the audio presence paradox
+### Core Topics
+1. **HRTFs and the Head-Related Transfer Function Mystery**
+   - How HRTFs create the illusion of 3D sound from 2D drivers
+   - Personalized vs. generic HRTFs — does your ear shape matter?
+   - The "precultural" problem: most HRTF research uses Western candidates
 
-**Core Question:** Why is the WebXR spec still visual-only for spatial audio, and can a flexible HRTF Resource type finally fix it?
+2. **Ambisonics & Spatial Audio Rendering**
+   - B-format ambisonics as the standard for VR/AR
+   - Real-time ambisonic decoding on mobile (GPU constraints)
+   - The gap between cinematic spatial audio and interactive AR audio
 
-### Key Topics
-- The SpatialAudioModel proposal in Godot (issue [#4377](https://github.com/godotengine/godot-proposals/issues/4377) — 16 👍, milestone 4.x) — a Resource type for HRTF loading without shipping a fixed dataset
-- WebAudio's Multi-channel PannerNode (issue [#2386](https://github.com/WebAudio/web-audio-api/issues/2386)) — why binauralizing ambisonic mixes needs spec-level support, not just library hacks
-- HRIR/HRTF in desktop audio: easyeffects issue [#2783](https://github.com/wwmm/easyeffects/issues/2783) — up-mixing to 5.1/7.1, 8-channel IR convolution, down-mixing back to stereo
-- FAudio issue [#345](https://github.com/FNA-XNA/FAudio/issues/345) — 3rd-order ambisonic signal chain via JACK → IEM ALLRAD → ASIO output; does FAudio support ambisonic mixing?
-- The "audio presence paradox": visual AR overlays are accepted as "real"; spatial audio that doesn't match visual origin feels "fake" — cross-modal binding failure
+3. **The WebXR Audio Gap**
+   - WebXR spec focuses on visual rendering; spatial audio is left to implementation
+   - Google Lullaby fills this gap internally (used by VR Home, YouTube, Play Movies)
+   - But the open-source community has no consensus spatial audio API for the web
 
-### GitHub Evidence
-| Repo | Issue | Debate |
+4. **The Audio Presence Paradox**
+   - Why do we trust what we hear more than what we see in VR?
+   - Auditory illusions that break presence faster than visual ones
+   - Cognitive science of sound-based spatial orientation
+
+### 🎤 Potential Guests
+- **Google Lullary audio engineers** — Spatial audio architects behind Material VR
+- **Josh McDermott (MIT)** — Auditory perception researcher, computational acoustics  
+- **Andreas Sabelfeld (KTH)** — HRTF personalization and spatial audio rendering  
+- **WebXR working group members** — Spec authors who can speak to the audio gap  
+- **Resonance Audio / SLAM engineers** — Google's spatial audio SDK team  
+
+### 📚 GitHub Research Backbone
+- [Google Lullaby — Spatial Audio in ECS Architecture](https://github.com/google/lullaby) (C++ spatial audio support, used across Google VR products)
+- [WebXR Immersive Web Working Group](https://www.w3.org/immersive-web/) — Spec gaps in spatial audio rendering
+- MindAR's lack of any spatial audio integration (source of the "visual-only" critique)
+
+### 🎬 Segment Structure
+| Segment | Time | Focus |
 |---|---|---|
-| godotengine/godot-proposals | [#4377](https://github.com/godotengine/godot-proposals/issues/4377) | SpatialAudioModel Resource type — HRTFs belong in core or in user-downloadable assets? |
-| WebAudio/web-audio-api | [#2386](https://github.com/WebAudio/web-audio-api/issues/2386) | Multi-channel PannerNode — ambisonic binauralization needs a new Node type |
-| wwmm/easyeffects | [#2783](https://github.com/wwmm/easyeffects/issues/2783) | HRIR convolution: up-mix → 8-ch IR → down-mix pipeline for desktop spatialization |
-| FNA-XNA/FAudio | [#345](https://github.com/FNA-XNA/FAudio/issues/345) | Ambisonic signal path: JACK → IEM ALLRAD → ASIO; does FAudio handle 5.1.2? |
+| Cold Open | 3 min | Close your eyes. You can"t navigate a room you can"t hear. |
+| The Science of HRTF | 12 min | How your head shapes sound — and why one size doesn"t fit all |
+| The Engineering Challenge | 12 min | Real-time ambisonics on a phone — brutal constraints |
+| The WebXR Gap | 10 min | Why the spec left audio behind — and who's fixing it |
+| The Presence Paradox | 8 min | When sound lies more than sight |
+| Checkout | 3 min | Next episode teaser |
 
-### Potential Guests
-- **ellenhp** — Godot SpatialAudioModel proposal author. Deep expertise in HRTF datasets, PCA compression, and why shipping fixed HRTFs in core is a mistake.
-- **pmlt** — WebAudio Multi-channel PannerNode proposal author. Works at the intersection of W3C standards and practical 3D audio implementation.
-- **mastr-ch13f** — easyeffects HRIR feature requester. Passional about making desktop spatial audio accessible to non-gamers.
-- **alex-schroedsen** — FAudio spatial audio implementer. Bridge between XAudio2 legacy and modern ambisonic pipelines.
-- **Calinou** — Godot Foundation 4.x milestone maintainer. Can speak to why the audio spatialization proposal is slated for 4.x but blocked by architectural constraints.
-
-### Debate Table
-| Position | Argument |
-|---|---|
-| **HRTFs belong in user assets, not core** | Head shapes vary too much; one dataset fits nobody. Let users download their own HRTF sprigs from the Asset Library. |
-| **Ship a default HRTF** | Users won't download anything. Without a default, SpatialAudioModel is just an empty shell. |
-| **Ambisonics is the universal interchange format** | 1st-order is enough for presence; higher orders are overkill. Decode once, render everywhere. |
-| **WebAudio is the missing piece** | WebXR is visual-only for spatial audio. The W3C needs a PannerNode that accepts ambisonic inputs directly. |
-| **HRTF = personal identity** | Your HRTF is as unique as your fingerprint. "Perceptual latency" in audio is about mismatch, not delay. |
+### 📝 Pre-Recording Tasks
+- [ ] Request comment from WebXR working group on audio spec status
+- [ ] Study Lullaby's spatial audio module source code
+- [ ] Prepare HRTF demo clips (personalized vs. generic)
+- [ ] Interview a cognitive scientist on auditory dominance in VR
 
 ---
 
 ## Episode 3 — "Interfaces Beyond the Flat Screen"
+**Status:** 🟡 Planned  
+**Duration Target:** 50 min  
+**Key Debate:** *Is the WebXR spec blind to non-visual perception?*
 
-**Focus:** MR interfaces, hologram drift, and wayfinding
+### Core Topics
+1. **MR Interface Design & the Compositing Problem**
+   - How do you blend virtual content with the real world seamlessly?
+   - MindAR issue #537: "Render the rest of the A-Frame Scene outside the MindAR Target" — a microcosm of the MR compositing challenge
+   - Passthrough vs. content-first: two philosophies that can't agree
 
-**Core Question:** Is the WebXR spec blind to non-visual perception — and what does that mean for mixed reality interfaces that feel like home?
+2. **Hologram Drift & Registration Error**
+   - Why do virtual objects "slide" when you move your head?
+   - 6DoF tracking vs. 3DoF: the perceptual difference that matters
+   - Cement drift and anchor persistence in AR spaces
 
-### Key Topics
-- MR interface design: hologram drift, fixed-foveated rendering, and the 2D-orbit problem
-- Wayfinding in spatial computing: how do you navigate a 3D desktop? The "air mouse" vs. laser pointer debate
-- Hand tracking as the primary MR input: reliability, latency, and the "pinch gap"
-- The WebXR spec gap: no standardized input profiles for non-visual modalities (haptic, proprioceptive, vestibular)
-- Cross-modal perception: if your virtual hand moves 50ms behind your real hand, does your brain "own" it? (Rubber Hand Illusion in MR)
-- MR overlay persistence: anchoring content to real-world surfaces vs. letting it float — the "spatial anchor drift" problem
+3. **Hand Tracking & Natural Interfaces**
+   - The illusion of hands: how pinch gestures fool (and fail) the brain
+   - MindAR issue #527: "Can track multiple faces on face-tracking?" — multi-user MR interface challenges
+   - The gap between "quarterly demo" hand tracking and daily-use reliability
 
-### GitHub Evidence
-| Repo | Issue | Debate |
+4. **Wayfinding & Spatial Cognition in MR**
+   - How do humans navigate mixed environments?
+   - Cognitive load of AR wayfinding prompts
+   - The "annotated world" paradox: more info can mean less understanding
+
+5. **The WebXR Blind Spot: Non-Visual Channels**
+   - Haptics, proprioception, and the forgotten senses in XR specs
+   - Material VR's widget system — visual-only UI in spatial environments
+   - What would a truly multi-sensory WebXR look like?
+
+### 🎤 Potential Guests
+- **Microsoft MRTK team** — Mixed Reality Toolkit architects  
+- **Hiukim** (@hiukim) — On MR compositing challenges and front-camera AR limitations (MindAR issue #539)  
+- **Marco6ocram** — MindAR contributor working on scene compositing outside tracking targets  
+- **Blitzy** — MindAR contributor who decoupled ThreeJS from the AR engine (issue #104)  
+- **Spatial computing researchers from Meta Reality Labs** — Point cloud tracking and holographic display teams  
+
+### 📚 GitHub Research Backbone
+- [MindAR Issue #526 — "Is this repo abandonware?"](https://github.com/hiukim/mind-ar-js/issues/526) (13 comments, 3 👀) — The sustainability question that mirrors the industry's MR interface standardization gap
+- [MindAR Issue #537 — "Render the rest of the A-Frame Scene outside the MindAR Target"](https://github.com/hiukim/mind-ar-js/issues/537) — MR compositing design challenge
+- [MindAR Issue #527 — "Can track multiple faces on face-tracking?"](https://github.com/hiukim/mind-ar-js/issues/527) — Multi-user MR interface scalability
+- [MindAR Issue #539 — "Front camera image tracking"](https://github.com/hiukim/mind-ar-js/issues/539) — Environmental occlusion and MR realism
+- [MindAR Issue #104 — "Decouple ThreeJS from MindAR"](https://github.com/hiukim/mind-ar-js/issues/104) (18 comments) — Architecture choices affecting MR interface flexibility
+- [Microsoft MRTK-Unity](https://github.com/microsoft/MixedRealityToolkit-Unity) (6.1k ⭐) — Enterprise MR interface patterns
+
+### 🎬 Segment Structure
+| Segment | Time | Focus |
 |---|---|---|
-| microsoft/MixedRealityToolkit-Unity | [General](https://github.com/microsoft/MixedRealityToolkit-Unity) | Hand tracking reliability, hologram stability, spatial anchor management |
-| microsoft/MixedReality-WebRTC | [General](https://github.com/microsoft/MixedReality-WebRTC) | WebRTC for MR: low-latency streaming vs. interactive perception |
-| immersive-web/webxr | [General](https://github.com/immersive-web/webxr) | Spec gap: no non-visual input/output profiles; hand tracking vs. controller paradigm |
-| godotengine/godot | [XR modules](https://github.com/godotengine/godot/tree/master/modules) | Godot's XR architecture: ARVRServer, XRBodyTracker, and the 3D interface framework |
+| Cold Open | 4 min | "Your AR app knows where your face is. Does it know where you are?" |
+| The Compositing Crisis | 12 min | Why mixing real and virtual is harder than it looks |
+| Hologram Drift | 10 min | The uncanny feeling of things that won't stay put |
+| Hands That Aren't There | 10 min | Hand tracking's perception problem |
+| Wayfinding in the Blend | 8 min | Lost in the augmented world |
+| Beyond Vision | 9 min | What about sound, touch, and balance in XR? |
+| Checkout | 4 min | Series outlook + community call-for-guests |
 
-### Potential Guests
-- **reduz (Juan Linietsky)** — Godot co-creator. Can speak to the architectural decisions behind Godot's XR support and why 3D interfaces are harder than 3D rendering.
-- **punto- (Ariel Manzur)** — Godot co-creator. Perspective on how 2D-first design philosophy shapes (and limits) 3D interface paradigms.
-- **Calinou** — Godot Foundation. Maintains the milestone that includes XR audio and input improvements.
-- **ellenhp** — Spatial audio in Godot. Cross-modal perception: if audio doesn't match visual origin, does the brain reject the whole MR experience?
-
-### Debate Table
-| Position | Argument |
-|---|---|
-| **Hand tracking is the future** | No controllers to lose, no batteries, no精度高 — just hands. The pinch gesture is universal. |
-| **Controllers are safer** | Hand tracking flickers, jitters, and fails in bright light. Controllers are deterministic. |
-| **The 2D-orbit problem is unsolved** | Rotating a 3D object with a 2D input device is like using a TV remote to sculpt clay. |
-| **WebXR is visual-centric by design** | The spec defines `XRReferenceSpace` and `XRPose` but nothing for auditory or haptic reference frames. |
-| **Spatial anchors need drift correction** | GPS-level accuracy (1m) is not enough for MR. Centimeter-level anchor persistence is the unsolved problem. |
-| **The Rubber Hand Illusion applies to MR** | If visuo-motor correlation is strong enough, the brain will "own" any input device — even a laser pointer. |
+### 📝 Pre-Recording Tasks
+- [ ] Comment on MindAR issue #537 to connect with marco6ocram
+- [ ] Reach out to Blitzy about MR interface architecture decisions
+- [ ] Review MRTK-Unity's spatial UX guidelines
+- [ ] Prepare side-by-side clips: passthrough vs. content-first MR demos
+- [ ] Draft a "non-visual WebXR" manifesto snippet for the episode
 
 ---
 
-## Production Notes
+## 🗓️ Episode Production Calendar
 
-- **Recording format:** Conversational, two hosts + one guest per episode
-- **Length target:** 45–60 minutes
-- **Pre-production:** Each episode requires 2 weeks of GitHub issue research and guest outreach
-- **Open issues link:** Each episode has a companion GitHub issue (see below) for community input
+| Milestone | Episode 1 | Episode 2 | Episode 3 |
+|---|---|---|---|
+| Research Complete | ✅ | 🔲 | 🔲 |
+| Guest Confirmed | 🔲 | 🔲 | 🔲 |
+| Script Draft | 🔲 | 🔲 | 🔲 |
+| Demo Clips Ready | 🔲 | 🔲 | 🔲 |
+| Recording | 🔲 | 🔲 | 🔲 |
+| Edit & Master | 🔲 | 🔲 | 🔲 |
+| Publish | 🔲 | 🔲 | 🔲 |
 
-## Companion Issues
+## 🤝 How to Contribute
 
-- 🎙️ **Episode 1:** "Latency and the Perceptual Threshold" — [Issue #1](https://github.com/bro26man-hash/human-perception-podcast/issues/1)
-- 🎙️ **Episode 2:** "Spatial Sound and the Third Dimension" — [Issue #2](https://github.com/bro26man-hash/human-perception-podcast/issues/2)
-- 🎙️ **Episode 3:** "Interfaces Beyond the Flat Screen" — [Issue #3](https://github.com/bro26man-hash/human-perception-podcast/issues/3)
+1. **Pick an episode issue** (see Issues #113, #114, #115 in this repo)
+2. **Add research findings, issue links, or guest suggestions** as comments on the issue
+3. **Submit a PR** with updated outlines, demos, or transcripts
+4. **Tag potential guests** and track outreach status in the issue comments
+5. **Flag new GitHub debates** — when you find a hot issue in AR.js, MindAR, or Lullaby, add it to the research audit
+
+## 📡 Repository Audit — Live GitHub Tracker
+
+See [`GITHUB-RESEARCH-ADDENDUM.md`](./GITHUB-RESEARCH-ADDENDUM.md) for the full, continuously updated audit of:
+- Top AR/MR/Spatial Computing repos (stars, activity, maintenance status)
+- Key contributors and maintainers to potentially invite
+- Hottest open issues organized by perceptual theme
+- Debate threads with direct links and comment cherry-picks

@@ -1,7 +1,7 @@
 # 🎙️ The Future of Human Perception — Episode Outline
 
-> A collaborative podcast series exploring augmented reality, spatial computing, and the science of human perception.
-> **Research sync: 2026-09-18** — Updated with confirmed GitHub-sourced hot debates from WiVRn, ARCore, MixedReality-WebRTC, WebXR, glTF, and AR.js repositories.
+> A collaborative podcast series exploring the engineering and human science behind how technology reshapes perception.
+> **Research sync: 2026-09-18** — Updated with confirmed GitHub-sourced hot debates from WiVRn, ARCore, MixedReality-WebRTC, WebXR, glTF, AR.js, **JSAR Runtime**, and **Spatial Computing** repositories.
 
 ---
 
@@ -14,11 +14,17 @@ How fast must a system reply before your brain accepts it as real? How does spat
 | Domain | Repos |
 |---|---|
 | Web 3D / WebXR | `mrdoob/three.js` (115.6k ⭐), `playcanvas/engine` (16.7k ⭐), `immersive-web/webxr` (3.1k ⭐), `Hubs-Foundation/hubs` (2.2k ⭐) |
+| **Spatial Web Engine** | **`jsar-project/runtime` (86⭐, C++/Rust)** — Browser engine for the Spatial Web; WebGL2/WebXR conformance; key issue: Web Audio API "Not started", Eye/Depth/Anchor APIs "Not implemented" |
+| **Open AR Platform** | **`Caraveo/ZiaXR` (1⭐)** — "The Open Platform for Spatial Computing"; XTP:// protocol; Expo Store vision; hardware platform problem |
 | Web AR | `AR-js-org/AR.js` (15.8k ⭐), `hiukim/mind-ar-js` (2.7k ⭐), `jeeliz/jeelizFaceFilter` (2.9k ⭐) |
 | Mixed Reality | `microsoft/MixedRealityToolkit-Unity` (6.1k ⭐), `MixedRealityToolkit/MixedRealityToolkit-Unity` (550 ⭐), `microsoft/MixedReality-WebRTC` (944 ⭐) |
-| Spatial Computing | `StereoKit/StereoKit` (1.1k ⭐), `KhronosGroup/OpenXR-SDK` (1.1k ⭐), `IvanCampos/visionOS-examples` (405 ⭐), `microsoft/xr-development-for-beginners` (564 ⭐) |
-| Spatial Audio | `GoogleChrome/omnitone` (911 ⭐), `leomccormack/Spatial_Audio_Framework` (748 ⭐), `google/spatial-media` (2.1k ⭐), `freeman-jiang/beatsync` (3.2k ⭐) |
-| AR SDKs | `google-ar/arcore-android-sdk` (5.2k ⭐), `google-ar/arcore-unity-sdk` (1.4k ⭐), `Unity-Technologies/arfoundation-samples` (3.4k ⭐), `olucurious/Awesome-ARkit` (8.0k ⭐), `AndrewHartAR/ARKit-CoreLocation` (5.5k ⭐) |
+| **MR Audio-Visual** | **`alextawes19/SYNC-MR`** — Mixed reality percussion with spatialized sound, Velnet networking, AI NPC; April tag anchoring |
+| **Spatial Photos** | **`zfox23/spatial-photo-webxr-viewer` (14⭐)** — Apple Spatial Photos in WebXR; "Multidimensional Memories" format (180° photos + 30s spatial audio) |
+| **Spatial Measurement** | **`saadmzmm/webxr-spatial-ruler`** — Production-ready WebXR spatial measurement (React, Three.js, React Three Fiber) |
+| **Open Spatial Spaces** | **`dob-0/di.iiii` (1⭐)** — "Public spaces on the open web"; link-based spatial experiences, no app required |
+| Architecture | **`rubenhekkens/spatial-architecture-explorer`** — WebXR/Babylon.js "Jarvis / Minority Report" style spatial UI |
+| Spatial Video | **`ranvuemor/SpatialVideoBrowser`** — Meta Quest 3 spatial video browser via TLabWebView |
+| AR SDKs | `google-ar/arcore-android-sdk` (5.2k ⭐), `google-ar/arcore-unity-sdk` (1.4k ⭐), `Unity-Technologies/arfoundation-samples` (3.4k ⭐) |
 | 3D Assets & Standards | `KhronosGroup/glTF` (10k ⭐+) — audio emitter extensions, spatial video proposals |
 | Open Source VR | `WiVRn/WiVRn` (活跃), `ValveSoftware/openvr` (活跃), `polygraphene/ALVR` (活跃), `ValveSoftware/SteamVR-for-Linux` (活跃) |
 
@@ -35,7 +41,7 @@ Can foveation trick the brain into forgiving lag? What is the true motion-to-pho
 
 | Debate | Source | Signal | Key Insight |
 |---|---|---|---|
-| ** Per-client scheduled frames stall xrEndFrame** — WiVRn #1099 | [WiVRn #1099](https://github.com/WiVRn/WiVRn/issues/1099) | 🔴 15 comments, 2026 | After Quest 3 passthrough refocus, `wait_for_scheduled_free()` holds per-client frame slots scheduled **47 minutes in the future**. Compositor stays healthy at 80 FPS — this is a per-client scheduling bug, not global. The brain's vestibular system certainly notices. |
+| **Per-client scheduled frames stall xrEndFrame** — WiVRn #1099 | [WiVRn #1099](https://github.com/WiVRn/WiVRn/issues/1099) | 🔴 15 comments, 2026 | After Quest 3 passthrough refocus, `wait_for_scheduled_free()` holds per-client frame slots scheduled **47 minutes in the future**. Compositor stays healthy at 80 FPS — this is a per-client scheduling bug, not global. The brain's vestibular system certainly notices. |
 | **Temporal irregularity vs. average latency** — WiVRn #282 | [WiVRn #282](https://github.com/WiVRn/WiVRn/issues/282) | 🔴 40 comments | Paradigm shift: stutter = irregularity, not depth. The brain detects frame pacing irregularity, not absolute latency. |
 | **"Missing" latency in VR streaming** — ALVR #334 | [ALVR #334](https://github.com/polygraphene/ALVR/issues/334) | 🔴 33.6ms unaccounted | 30–50% underreporting. If we're optimizing against the wrong number, the "20ms rule" may be unreachable even when reported numbers look fine. |
 | **Camera↔IMU clock offset 13–35ms** — ARCore #1779 | [ARCore #1779](https://github.com/google-ar/arcore-android-sdk/issues/1779) | 🔴 Active, 2026 | On Xiaomi/OPPO devices, hardware clock sync between camera and IMU introduces 13–35ms offsets. ARCore logs: "Camera to IMU clock offset (34.86ms) exceeds threshold (5ms)." Rotation integrated as translation — phantom 100m path from in-place rotation. invisible to devs, catastrophic for perception. |
@@ -45,6 +51,8 @@ Can foveation trick the brain into forgiving lag? What is the true motion-to-pho
 | **ARCore session crash on Samsung** — ARCore #1762 | [ARCore #1762](https://github.com/google-ar/arcore-android-sdk/issues/1762) | 🟡 Perceptual trust destroyed | Session resume crash after Play Services update — the brain's spatial model is violently interrupted. |
 | **Web AR tracking failure** — AR.js #826, #825 | [AR.js #826](https://github.com/AR-js-org/AR.js/issues/826) | 🟡 First perceptual bottleneck on the web | Real-time tracking as the first perceptual bottleneck on the web platform. |
 | **AR.js maintainers needed** — AR.js #609 | [AR.js #609](https://github.com/AR-js-org/AR.js/issues/609) | 🟡 Stale maintenance = stale perceptual techniques | Web AR's ceiling is held back by maintenance gaps. |
+| **WebGL2 conformance gaps silently break latency-critical paths** — JSAR #420, #421 | [JSAR #420](https://github.com/jsar-project/runtime/issues/420) [JSAR #421](https://github.com/jsar-project/runtime/issues/421) | 🔴 2025–2026, `getParameter` returns `undefined` | WebGL2 `getParameter(context.RASTERIZER_DISCARD)` returns `undefined` instead of `boolean`. `MAX_3D_TEXTURE_SIZE` returns `undefined` instead of `Number >= 256`. Type-unsafe APIs in a latency-critical rendering engine — the engine can't even query its own capabilities reliably. **This is the perceptual latency problem at the engine level.** |
+| **WebXR spec: Depth, Eye, Anchor APIs all "Not implemented"** — JSAR README | [JSAR README](https://github.com/jsar-project/runtime) | 🔴 Structural gap | The spatial web engine lists Hit Test, Anchors, Eye Tracking, Depth Sensing, Face Tracking, Body Tracking, Light Estimation, Environment Probes — all "Not implemented." You can render a spatial web page, but you can't perceive the real world around it. |
 
 ### Key Topics
 1. The motion-to-photon pipeline — sensor → predict → render → encode → transport → decode → display. Every stage injects latency.
@@ -56,7 +64,9 @@ Can foveation trick the brain into forgiving lag? What is the true motion-to-pho
 7. **Acoustic echo cancellation failure** — MR-WebRTC #157: AEC broken in OpenXR MR stacks.
 8. **No standardized latency benchmark** — OpenVR #249: the metrology crisis.
 9. **Reprojection error** — OpenVR #659: the mechanical last line of defense that's breaking.
-10. Session crashes as perceptual events — ARCore #1762.
+10. **WebGL2 type-unsafe conformance** — JSAR #420/#421: the engine can't query its own rendering capabilities. Type-undefined in a latency-critical path.
+11. **Session crashes as perceptual events** — ARCore #1762.
+12. **The "perceptual vs. measured" gap** — when the compositor says 80 FPS but the user experiences minute-long freezes.
 
 ### 👤 Guest Targets (Updated)
 
@@ -74,6 +84,10 @@ Can foveation trick the brain into forgiving lag? What is the true motion-to-pho
 | **Daniel4144** | Contributor, MixedReality-WebRTC | Locatable camera & projection-matrix tracking (#83); MR audio-visual pipeline coupling | ⬜ Not contacted |
 | **jameszhong2008** | Issue author, MR-WebRTC #157 | First-hand AEC failure experience on MixedReality-WebRTC | ⬜ Not contacted |
 | **rutmir** | Issue author, ARCore #1779 | Camera↔IMU clock offset measurement on Xiaomi; VIO fault analysis | ⬜ Not contacted |
+| **EndlessJour9527** | **Lead contributor, JSAR runtime** | WebGL2/WebXR conformance expertise; 15+ open issues on type safety & rendering; the engine-level view of the latency problem | ⬜ Not contacted |
+| **yorkie** | **Contributor, JSAR runtime** | Browser engine internals; Notifications API implementation; Rust nightly build architecture | ⬜ Not contacted |
+| **Caraveo** | **Founder, ZiaXR** | Open spatial computing platform; the "hardware platform problem"; XTP:// protocol for AR expos | ⬜ Not contacted |
+| **zfox23** | **Creator, spatial-photo-webxr-viewer** | WebXR spatial photos; "Multidimensional Memories" format; the gap between Apple hardware and open web | ⬜ Not contacted |
 
 ### The Hot Debate
 
@@ -83,9 +97,11 @@ Can foveation trick the brain into forgiving lag? What is the true motion-to-pho
 
 > **🔥 Camera↔IMU clock offset is invisible but catastrophic.** ARCore #1779 shows 13–35ms offsets between camera and IMU on mid-range Android. ARCore's own diagnostics say "exceeds threshold (5ms)" — but the user never sees this. Rotation becomes translation. The brain's spatial model is silently corrupted.
 
-> **🔥 Acoustic echo cancellation is a spatial-perception problem.** MixedReality-WebRTC #157 reveals that AEC — critical for spatial audio presence — is fundamentally broken in current MR stacks. Without echo cancellation, room acoustics contaminate the spatial audio model. This isn't an audio quality issue; it's a *perceptual calibration* failure.
+> **🔥 The engine can't even query its own rendering state.** JSAR #420/#421: WebGL2 `getParameter` returns `undefined` for boolean and numeric parameters. In a latency-critical rendering engine, type-unsafe API calls mean the engine can't reliably determine its own capabilities. This isn't a conformance nit — it's a perceptual liability.
 
 > **🔥 The industry can't even measure latency consistently.** OpenVR #249: no standardized motion-to-photon latency benchmark exists. Different methodologies make comparisons meaningless. This is a metrology crisis — we're optimizing phantom numbers.
+
+> **🔥 WebXR is structurally blind to non-visual perception.** JSAR's own README lists Eye Tracking, Depth Sensing, Anchors, Hit Test, Face Tracking, Body Tracking, Light Estimation, Environment Probes — all "Not implemented." You can render a spatial web page, but you can't perceive the real world around it. The spatial web engine is half-built.
 
 ---
 
@@ -113,20 +129,26 @@ Why is the WebXR spec visual-only for spatial audio? What does HRTF mean for pre
 | **ISM RIR incorrect summing** — SAF #58 | [Spatial_Audio_Framework #58](https://github.com/leomccormack/Spatial_Audio_Framework/issues/58) | 🟡 Fundamental bug | Image Source Method room acoustics bug invalidates perceptual room-acoustics research. |
 | **Hubs audio doesn't scale past 20 users** — #5057 | [Hubs #5057](https://github.com/Hubs-Foundation/hubs/issues/5057) | 🟡 Social-scale audio | Spatial audio quality collapses under CPU load at social scale. |
 | **Omnitone mobile gap** — #2 | [Omnitone #2](https://github.com/GoogleChrome/omnitone/issues/2) | 🔴 Open since 2016, 23 comments | Billion mobile users can't experience 3D audio. The mobile spatial audio gap is a decade old. |
+| **WebXR Web Audio API "Not started"** — JSAR README | [JSAR README](https://github.com/jsar-project/runtime) | 🔴 Structural gap | JSAR supports HTMLAudioElement but Web Audio API and HTMLVideoElement are both "Not started." The spatial web can play audio, but can't spatially render it. |
+| **MR percussion as spatialized interaction** — SYNC-MR | [SYNC-MR](https://github.com/alextawes19/SYNC-MR) | 🟡 Novel use case | Velnet-based collaborative MR drums with spatialized sound and AI NPC. April tag anchoring makes sound *physical* — you play drums that exist in your room. |
+| **"Multidimensional Memories" format** — zfox23 | [spatial-photo-webxr-viewer](https://github.com/zfox23/spatial-photo-webxr-viewer) | 🟡 New media format | 180° photos paired with 30s spatial audio clips. The missing pairing in current MR — Apple captures spatial photos but can't pair them with spatial audio on the open web. |
 
 ### Key Topics
 1. Head-Related Transfer Functions (HRTFs) — how ear shape filters sound for elevation and front-back cues.
 2. Ambisonics & Higher-Order Ambisonics (HOA) — mathematics of encoding 3D sound fields.
-3. The glTF audio extension frontier — three concurrent proposals: KHR_audio_emitter, KHR_audio_graph, KHR_audio_environment.
+3. The glTF audio extension frontier — three concurrent proposals: `KHR_audio_emitter`, `KHR_audio_graph`, `KHR_audio_environment`.
 4. Layered audio architecture — rudybear's proposal for a complete spatial audio stack inside glTF.
 5. Synchronized immersive video + audio — glTF #2506: timeline metadata, volumetric video, AV sync.
 6. The WebXR gap — no spatial audio API in the spec. Chrome's Omnitone vs. native HRTF pipelines.
-7. Personalized HRTFs — modeling individual ear geometry; unsolved on consumer hardware.
-8. Spatial presence vs. localization — ventriloquism effect and XR implications.
-9. Multi-device synchronization — freeman-jiang/beatsync: clock sync for presence.
-10. ARKit spatial audio & environment mapping — ARKit-CoreLocation (5.5k ⭐).
-11. **Two competing philosophies**: server-side binaural (Mach1/Avnerus) vs. client-side physics-accurate (Mumble/Krzmbrzl).
-12. **Research reproducibility crisis** — ISM bugs (#58) and HRTF dataset loading failures (#55) undermine spatial audio science.
+7. **Web Audio API gap** — JSAR supports only `HTMLAudioElement`; Web Audio API (the spatial rendering foundation) is "Not started."
+8. Personalized HRTFs — modeling individual ear geometry; unsolved on consumer hardware.
+9. Spatial presence vs. localization — ventriloquism effect and XR implications.
+10. Multi-device synchronization — freeman-jiang/beatsync: clock sync for presence.
+11. ARKit spatial audio & environment mapping — ARKit-CoreLocation (5.5k ⭐).
+12. **MR music visualization as spatial interface** — SYNC-MR: Velnet networking + April tag anchoring + AI NPC = spatialized sound becomes *interaction*, not just ambiance.
+13. **"Multidimensional Memories" as new media format** — zfox23: 180° photos + 30s spatial audio clips. The gap between what Apple hardware captures and what the open web can display.
+14. **Two competing philosophies**: server-side binaural (Mach1/Avnerus) vs. client-side physics-accurate (Mumble/Krzmbrzl).
+15. **Research reproducibility crisis** — ISM bugs (#58) and HRTF dataset loading failures (#55) undermine spatial audio science.
 
 ### 👤 Guest Targets (Updated)
 
@@ -146,16 +168,22 @@ Why is the WebXR spec visual-only for spatial audio? What does HRTF mean for pre
 | **edurnebernal** | Researcher, audio-visual perception | Audio-visual integration in VR; ventriloquism effect | ⬜ Not contacted |
 | **cwilso** | WebXR spec contributor | Auth of #390 (spatial audio in WebXR); understands the spec gap from the inside | ⬜ Not contacted |
 | **ddorwin** | WebXR contributor, #815 author | Non-visual XR use cases; spec language barrier analysis | ⬜ Not contacted |
+| **alextawes19** | **Creator, SYNC-MR** | MR percussion with spatialized sound; Velnet networking; April tag anchoring; AI NPC — a new model for spatial audio as *interaction* | ⬜ Not contacted |
+| **zfox23** | **Creator, spatial-photo-webxr-viewer** | "Multidimensional Memories" — 180° photos + 30s spatial audio; the gap between Apple hardware and open web; WebXR spatial photo viewer | ⬜ Not contacted |
 
 ### The Hot Debate
 
-> **The WebXR spec is визуально blind — and spatial audio is the biggest casualty.** WebXR #390 has been open since 2018 (30+ comments): the spec has no spatial-audio element. Chrome's Omnitone implements FOA but not full HRTF-based binaural rendering. Native platforms (Apple, Meta) ship proprietary spatial audio that developers can't access or extend. The web is the only platform that should be truly open for spatial audio — and it's falling behind.
+> **The WebXR spec is visually blind — and spatial audio is the biggest casualty.** WebXR #390 has been open since 2018 (30+ comments): the spec has no spatial-audio element. Chrome's Omnitone implements FOA but not full HRTF-based binaural rendering. Native platforms (Apple, Meta) ship proprietary spatial audio that developers can't access or extend. The web is the only platform that should be truly open for spatial audio — and it's falling behind.
 
 > **🔥 glTF is becoming the accidental spatial audio standard.** With three concurrent audio extension proposals (`KHR_audio_emitter` #2137, `KHR_audio_graph` #2632, `KHR_audio_environment` #2631), glTF is closer than WebXR to defining a complete spatial audio pipeline. The question is whether W3C Immersive Web will collaborate with Khronos or let glTF become the de facto standard.
 
 > **🔥 Two competing philosophies for web spatial audio are emerging.** Server-side binaural rendering (Mach1 / @Avnerus) — real-time HRTF on constrained devices via convolvers. vs. Client-side physics-accurate rendering (Mumble / @Krzmbrzl) — replace simplistic spatial audio with proper HRTFs + Doppler + environmental effects via OpenAL-Soft.
 
-> **🔥 Spatial audio can't be separated from spatial rendering.** MR-WebRTC issues #83, #153, #157 form a pattern: the audio pipeline is constrained by the visual rendering pipeline. You can't fix spatial audio without fixing the entire MR compositor.
+> **🔥 The spatial web engine can play audio but can't spatially render it.** JSAR's own README: `HTMLAudioElement` "Ok", but `Web Audio API` and `HTMLVideoElement` are both "Not started." You can stream music into a spatial browser, but you can't position it in 3D. The gap between "playback" and "spatial rendering" is the perceptual gap between "hearing" and "being there."
+
+> **🔥 SYNC-MR proves spatial audio is interaction, not ambiance.** Alextawes19's MR percussion app uses Velnet networking + April tag anchoring + AI NPC to make spatially-placed drums *playable*. Sound isn't background — it's the interface. The next frontier: spatial audio as the primary MR interaction channel.
+
+> **🔥 "Multidimensional Memories" reveals the content gap.** zfox23's format (180° photos + 30s spatial audio clips) is precisely what's missing from current MR platforms. Apple's Spatial Photos capture depth but can't pair it with spatial audio on the open web. The hardware exists; the standards don't.
 
 > **🔥 Research reproducibility is broken at the foundation.** SONIMO HRTF dataset loading bugs (#55) and ISM RIR incorrect summing (#58) mean that even the researchers can't reproduce each other's results. How can we build a science of spatial audio when the basic data pipelines are broken?
 
@@ -183,6 +211,11 @@ Is the WebXR spec blind to non-visual perception? Can MR interfaces survive with
 | **AR.js architecture debates** — #681, #26, #58 | [AR.js #681](https://github.com/AR-js-org/AR.js/issues/681) | 🟡 ECS architecture proposal | Kalwalt's component-based architecture → pluggable tracking/rendering/interaction systems for MR. |
 | **Multi-camera AR support** — AR.js #26 | [AR.js #26](https://github.com/AR-js-org/AR.js/issues/26) | 22 comments | No API to choose camera on multi-camera devices. Front vs. back cameras have different FOV, distortion, latency. |
 | **MX Ink stylus for Meta Quest** — MRTK #914 | [MRTK #914](https://github.com/MixedRealityToolkit/MixedRealityToolkit-Unity/issues/914) | 🟡 Platform convergence without interface abstraction | Quest user wants HoloLens tools. Input fragmentation breaks MR presence. |
+| **WebXR feature gaps: Eye/Depth/Anchor/Hit all "Not implemented"** — JSAR README | [JSAR README](https://github.com/jsar-project/runtime) | 🔴 Structural gap | Hand Tracking is "Ok" but Eye Tracking, Depth Sensing, Face Tracking, Body Tracking, Light Estimation, Environment Probes, Hit Test, Anchors are all "Not implemented." The spatial web can render but can't perceive. |
+| **Open Spatial Web: link-based spaces** — di.iiii | [di.iiii](https://github.com/dob-0/di.iiii) | 🟡 Philosophy shift | "Public spaces on the open web. Make a space, hand out the address: a link while it runs, a file when it ends. No app, nothing to install." This is the anti-app-store model for spatial computing. |
+| **Spatial architecture as UI paradigm** — rubenhekkens | [spatial-architecture-explorer](https://github.com/rubenhekkens/spatial-architecture-explorer) | 🟡 New interface model | WebXR/Babylon.js "Jarvis / Minority Report" style spatial UI. Architecture exploration as a spatial interface — not a 3D model viewer. |
+| **Spatial measurement as wayfinding tool** — webxr-spatial-ruler | [webxr-spatial-ruler](https://github.com/saadmzmm/webxr-spatial-ruler) | 🟡 Practical wayfinding | Production-ready WebXR spatial measurement (React, Three.js, React Three Fiber). Making the invisible visible — distance, area, volume in your physical space. |
+| **Apple Spatial Photos vs. open web** — zfox23 | [spatial-photo-webxr-viewer](https://github.com/zfox23/spatial-photo-webxr-viewer) | 🟡 Walled garden gap | Apple captures spatial photos but the open web can't display them without a bridging app. The hardware is proprietary; the experience should be universal. |
 
 ### Key Topics
 1. The MR interface stack — hand tracking, gaze anchoring, temporal stabilization.
@@ -199,6 +232,9 @@ Is the WebXR spec blind to non-visual perception? Can MR interfaces survive with
 12. **WebXR wayfinding crisis** — #992: spatial memory and navigation, core human abilities that XR interfaces break.
 13. **Dynamic foveation as perceptual lever** — #1420: rendering asymmetry (high-res center, low-res periphery) as a performance optimization.
 14. **Input fragmentation** — MRTK #914 (MX Ink on Quest) and #511 (vendor plugins) mean spatial interface designers must choose between ecosystems.
+15. **Open spatial web philosophy** — di.iiii: link-based spatial experiences that bypass app stores entirely. "No app, nothing to install."
+16. **Spatial architecture as UI** — rubenhekkens: architecture exploration in VR as a spatial interface paradigm, not a 3D model viewer.
+17. **Spatial measurement as tangible wayfinding** — saadmzmm: production-ready WebXR ruler making physical distances visible in MR.
 
 ### 👤 Guest Targets (Updated)
 
@@ -219,6 +255,11 @@ Is the WebXR spec blind to non-visual perception? Can MR interfaces survive with
 | **AdaRoseCannon** | W3C Immersive Web | Dynamic foveation & visibility masking (#1420); accessibility; spec language for non-visual XR (#815) | ⬜ Not contacted |
 | **toffan** | WebXR contributor | DOM overlays in XR (#1414); compositing layers; visibility-mask events | ⬜ Not contacted |
 | **keveleigh** | Microsoft MRTK maintainer | Vendor plugin architecture (#511); MRTK documentation gaps (#987); input abstraction strategy | ⬜ Not contacted |
+| **EndlessJour9527** | Lead contributor, JSAR runtime | WebXR feature implementation gaps from the engine side; why "Not implemented" features matter for perception | ⬜ Not contacted |
+| **Caraveo** | Founder, ZiaXR | Open platform & XTP:// protocol; "Expo" apps as the answer to MR interface fragmentation; hardware platform problem | ⬜ Not contacted |
+| **dob-0** | Creator, di.iiii | Link-based spatial web philosophy; anti-app-store approach; "public spaces on the open web" | ⬜ Not contacted |
+| **saadmzmm** | Creator, webxr-spatial-ruler | Production-ready WebXR spatial measurement; practical wayfinding tools for MR | ⬜ Not contacted |
+| **rubenhekkens** | Creator, spatial-architecture-explorer | Spatial architecture as UI paradigm; WebXR/Babylon.js "Jarvis" interfaces | ⬜ Not contacted |
 
 ### The Hot Debate
 
@@ -230,7 +271,11 @@ Is the WebXR spec blind to non-visual perception? Can MR interfaces survive with
 
 > **🔥 The camera is the perceptual bottleneck.** ARCore #153 (no flashlight/auto-exposure API) reveals that the camera subsystem limits perceptual quality. Without programmatic camera control, AR is at the mercy of the OS camera app. The brain's visual system adapts to lighting conditions automatically — AR can't.
 
-> **🔥 AR.js 2→3 is an architectural perceptible shift.** Kalwalt's ECS proposal (#681) isn't just a refactoring — it's a paradigm change from monolithic to component-based. Component architecture means pluggable tracking, rendering, and interaction systems — exactly what MR needs for adaptive perceptual pipelines.
+> **🔥 The spatial web engine can render but can't perceive.** JSAR's README: Hand Tracking "Ok," but Eye Tracking, Depth Sensing, Anchors, Hit Test, Face Tracking, Body Tracking, Light Estimation, Environment Probes — all "Not implemented." You can place HTML in 3D space, but you can't understand the physical space around the user. This is the fundamental MR interface gap.
+
+> **🔥 The "open spatial web" philosophy challenges the app-store model.** dob-0's di.iiii: "Make a space, hand out the address: a link while it runs, a file when it ends. No app, nothing to install." If spatial computing is truly the next iteration of the web, why does it require native apps? The link is the interface.
+
+> **🔥 Spatial architecture is an interface paradigm, not a 3D viewer.** rubenhekkens' spatial-architecture-explorer uses WebXR/Babylon.js to create "Jarvis / Minority Report style" architectural exploration. This isn't rendering — it's interaction. The interface is the experience.
 
 ---
 
@@ -246,6 +291,10 @@ Is the WebXR spec blind to non-visual perception? Can MR interfaces survive with
 | Standards convergence (glTF ↔ WebXR) | — | ✅ (KHR_audio_* extensions) | ✅ (WebXR spec gaps) |
 | Camera-as-bottleneck | ✅ (session stability) | ✅ (audio-visual coupling) | ✅ (flashlight/auto-exposure gap) |
 | Reproducibility crisis | ✅ (latency measurement crisis) | ✅ (ISM/HRTF data bugs) | ✅ (calibration that works once) |
+| **The "Not Implemented" problem** | ✅ (WebGL2 conformance) | ✅ (Web Audio API gap) | ✅ (Eye/Depth/Anchor/Hit all missing) |
+| **Content vs. platform gap** | — | ✅ (MDM format) | ✅ (Apple Spatial Photos walled garden) |
+| **Spatial audio as interaction** | — | ✅ (SYNC-MR) | — |
+| **Open spatial web philosophy** | — | — | ✅ (di.iiii, XTP://) |
 
 ---
 
@@ -255,6 +304,40 @@ Is the WebXR spec blind to non-visual perception? Can MR interfaces survive with
 2. **Add issue links** from the GitHub repos above as comments on the relevant issue.
 3. **Tag potential guests** — see `GUEST_DIRECTORY.md` for full contact and research context.
 4. **Submit a PR** with updated outlines, new research findings, or additional hot debates.
+
+## Key Repositories for Contributors
+
+| Repo | Stars | Language | Why It Matters |
+|---|---|---|---|
+| `jsar-project/runtime` | 86⭐ | C++/Rust | Spatial Web browser engine; WebGL2/WebXR conformance; **engine-level view of perceptual gaps** |
+| `Caraveo/ZiaXR` | 1⭐ | — | Open AR platform; XTP protocol; hardware platform problem |
+| `mrdoob/three.js` | 115.6k ⭐ | JS | Dominant 3D engine; WebXR integration baseline |
+| `playcanvas/engine` | 16.7k ⭐ | JS | WebGL rendering; AR/VR foundation |
+| `immersive-web/webxr` | 3.1k ⭐ | IDL | The spec itself; #390, #815, #992, #1420 |
+| `AR-js-org/AR.js` | 15.8k ⭐ | JS | Web AR pioneer; #681 ECS architecture debate |
+| `google-ar/arcore-android-sdk` | 5.2k ⭐ | Java/NDK | #120 depth, #89 device support, #153 camera control, #1779 clock offset |
+| `microsoft/MixedRealityToolkit-Unity` | 6.1k ⭐ | C# | #914 MX Ink on Quest; MR interface patterns |
+| `microsoft/MixedReality-WebRTC` | 944 ⭐ | C++ | #157 AEC failure; MR audio-visual pipeline |
+| `GoogleChrome/omnitone` | 911 ⭐ | C++ | #2 mobile spatial audio gap; FOA vs. HRTF |
+| `hoch/omnitone` | — | — | Mobile spatial audio maintainer |
+| `leomccormack/Spatial_Audio_Framework` | 748 ⭐ | C | #55 HRTF loading bugs; #58 ISM RIR bug |
+| `khronosgroup/glTF` | 10k ⭐+ | JSON | #2137, #2561, #2631, #2632 audio extension proposals |
+| `zfox23/spatial-photo-webxr-viewer` | 14⭐ | JS/TS | WebXR spatial photos; "Multidimensional Memories" |
+| `alextawes19/SYNC-MR` | — | C# | MR percussion; spatialized sound as interaction |
+| `dob-0/di.iiii` | 1⭐ | JS | Link-based open spatial web philosophy |
+| `saadmzmm/webxr-spatial-ruler` | — | TS | Production WebXR spatial measurement |
+
+---
+
+## Links & Resources
+
+- [Immersive Web Working Group](https://www.w3.org/immersive-web/)
+- [WebXR Device API Specification](https://immersive-web.github.io/webxr/)
+- [Mixed Reality Toolkit](https://aka.ms/mrtkdocs)
+- [AR.js](https://github.com/AR-js-org/AR.js)
+- [JSAR Runtime Manual](https://m-creativelab.github.io/jsar-runtime/manual/introduction.html)
+- [W3C Web Audio API](https://www.w3.org/TR/webaudio/)
+- [glTF Audio Extensions](https://github.com/KhronosGroup/glTF/blob/main/extensions/2.0/Khronos/README.md)
 
 ---
 

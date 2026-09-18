@@ -1,174 +1,147 @@
-# GitHub Research Addendum — September 2026
+# 🔬 GitHub Research Addendum — Hot Debates & Contributors
 
-> Live audit of GitHub issues, contributors, and hot debates across AR/MR/Spatial Computing repos. Updated 2026-09-17.
+*Last audited: September 2026*
 
----
+## Methodology
 
-## Most Active Repositories (Research Backbone)
-
-| Repo | Stars | Language | Focus | Last Updated |
-|---|---|---|---|---|
-| `mrdoob/three.js` | 115.6k | JS | 3D engine / WebXR | 2026-09-17 |
-| `playcanvas/engine` | 16.9k | JS | Web 3D / WebXR / glTF | 2026-09-17 |
-| `AR-js-org/AR.js` | 15.8k | JS | Web AR (marker + geolocation) | Active |
-| `google-ar/arcore-android-sdk` | 5.2k | Java | Android AR SDK | Active |
-| `microsoft/MixedRealityToolkit-Unity` | 6.1k | C# | MR toolkit | Active |
-| `olucurious/Awesome-ARkit` | 8.0k | — | ARKit resource list | Active |
-| `Unity-Technologies/arfoundation-samples` | 3.4k | C# | AR Foundation samples | Active |
-| `google/spatial-media` | 2.1k | — | Spatial media format | Active |
-| `freeman-jiang/beatsync` | 3.2k | — | Multi-device audio sync | Active |
-| `jeeliz/jeelizFaceFilter` | 2.9k | JS | Web face tracking AR | 2026-09-13 |
-| `hiukim/mind-ar-js` | 2.7k | JS | Web AR (image/face tracking) | 2026-09-16 |
-| `google-ar/arcore-unity-sdk` | 1.4k | C# | ARCore Unity SDK | Active |
-| `StereoKit/StereoKit` | 1.1k | C# | XR engine (OpenXR + WebXR) | Active |
-| `KhronosGroup/OpenXR-SDK` | 1.1k | C | OpenXR standard | Active |
-| `GoogleChrome/omnitone` | 911 | JS | Spatial audio (FOA/HOA) | Active |
-| `microsoft/MixedReality-WebRTC` | 944 | C# | MR communication stack | Active |
-| `leomccormack/Spatial_Audio_Framework` | 748 | C | Spatial audio algorithms | Active |
-| `maxxfrazer/RealityUI` | 700 | Swift | RealityKit UI components | 2026-09-01 |
-| `sceneview/sceneview` | 1.3k | Kotlin | 3D & AR SDK (Android/iOS/Web) | 2026-09-17 |
-| `microsoft/xr-development-for-beginners` | 564 | — | XR dev tutorials | Active |
-| `IvanCampos/visionOS-examples` | 405 | Swift | visionOS spatial UI examples | Active |
-| `MixedRealityToolkit/MixedRealityToolkit-Unity` | 550 | C# | MRTK community fork | Active |
-| `Hubs-Foundation/hubs` | 2.2k | JS | Social VR / A-Frame | Active |
-| `immersive-web/webxr` | 3.1k | — | WebXR spec | Active |
-| `immersive-web/webxr-ar-module` | — | — | WebXR AR module | Active |
-| `immersive-web/webxr-samples` | — | — | WebXR samples | Active |
-| `immersive-web/plane-detection` | — | — | WebXR plane detection | Active |
-| `KhronosGroup/glTF` | 10k+ | — | 3D asset format (audio extensions) | Active |
-| `dolphin-emu/dolphin` | — | C++ | Game emulator (spatial audio) | Active |
+We searched across GitHub for the most active repositories in augmented reality, spatial computing, and 3D audio. We then surfaced open issues with the highest community engagement (reactions, comments) related to perceptual latency, mixed reality interfaces, and spatial audio. Contributor names were extracted from issue authors, proposal authors, and maintainers.
 
 ---
 
-## Top Contributors & Potential Guests by Domain
+## Section 1 — Most Active AR / Spatial Computing Repositories
 
-### Episode 1: Latency & Perceptual Threshold
-
-| Name | GitHub | Repo / Role | Key Issues |
+### Tier 1: Mega-Stellar (50k+)
+| Repo | Stars | Language | Focus |
 |---|---|---|---|
-| **xytovl** | @xytovl | WiVRn maintainer | #1099 (passthrough freeze), #282 (stutter/irregularity), #1078 (high refresh rate) |
-| **leinardi** | @leinardi | SteamVR-for-Linux maintainer | #21 (tracking lag, 97+ comments) |
-| **jd-3d** | @jd-3d | ALVR developer | #334 (missing latency underreporting) |
-| **IceyMint** | @IceyMint | WiVRn reporter | #1099 (found the freeze bug) |
-| **maxkojju** | @maxkojju | WiVRn reporter | Pico GPU frame scheduling issues |
-| **zoeleu** | @zoeleu | WiVRn reporter | #1078 (Quest 3 high refresh rate) |
-| **brycehutchings** | @brycehutchings | Microsoft OpenXR-MR | #131, #132 (D3D12 frame timestamps) |
-| **emaschino** | @emaschino | Microsoft MRC | HoloLens 2 performance |
-| **fredemmott** | @fredemmott | Microsoft XR Advocate | Platform strategy |
-| **fieldsJacksonG** | @fieldsJacksonG | Microsoft MRC | #228, #221 (calibration instability) |
-| **chrisfromwork** | @chrisfromwork | Microsoft MRC | #221 (hologram camera sticking) |
-| **Daniel4144** | @Daniel4144 | MixedReality-WebRTC | locatable camera & projection matrix |
-| **fiban-havok** | @fiban-havok | MixedReality-WebRTC reporter | H.264 encoder blockiness |
-| **jameszhong2008** | @jameszhong2008 | MixedReality-WebRTC | #157 (AEC failure) |
-| **Maluoi** | @Maluoi | StereoKit maintainer | OpenXR backend, performance |
-| **AndrewJDR** | @AndrewJDR | immersive-web/webxr-ar-module | #44 (camera feed delay) |
-| **tangobravo** | @tangobravo | immersive-web/webxr-ar-module | #78, #77 (AR module gaps) |
+| [godotengine/godot](https://github.com/godotengine/godot) | 117,396 | C++ | Full 3D engine with active XR modules (ARVRServer, XRBodyTracker) |
 
-### Episode 2: Spatial Audio
-
-| Name | GitHub | Repo / Role | Key Issues |
+### Tier 2: High-Impact (5k–10k)
+| Repo | Stars | Language | Focus |
 |---|---|---|---|
-| **leomccormack** | @leomccormack | Spatial_Audio_Framework creator | #58 (ISM bug), #55 (SONIMO bugs), #66 (HOA) |
-| **crlandsc** | @crlandsc | Spatial_Audio_Framework contributor | Spatialization algorithms |
-| **ali-vosoughi** | @ali-vosoughi | Spatial_Audio_Framework contributor | Ambisonic processing |
-| **jacobhollebon** | @jacobhollebon | Spatial_Audio_Framework contributor | Architecture & design |
-| **BinWang28** | @BinWang28 | audio-ai-hub maintainer | HRTF research, spatial speech |
-| **edurnebernal** | @edurnebernal | Audio-visual perception researcher | Ventriloquism effect, AV integration |
-| **TheBarmaEffect** | @TheBarmaEffect | Spatial audio engine designer | Perception-first design |
-| **orighst (Boris Smus)** | @orighst | Google/omnitone | FOA/HOA, binaural rendering |
-| **brandonpjones** | @brandonpjones | Google/omnitone | Web Audio API spatial rendering |
-| **jkarmer** | @jkarmer | Google/omnitone | Real-time web spatial audio |
-| **timfain** | @timfain | Jaunt VR | Spatial content creation |
-| **freeman-jiang** | @freeman-jiang | beatsync creator | Multi-device clock sync |
-| **ameliaeckard** | @ameliaeckard | Apple Vision Pro spatial audio | Accessibility, navigation for visually impaired |
-| **Avnerus** | @Avnerus | Mach1 Studios | Real-time binaural on constrained devices |
-| **rudybear** | @rudybear | glTF audio extension author | #2561 (layered audio architecture) |
-| **robertlong** | @robertlong | glTF KHR_audio_emitter | Spatial audio emitter extension |
-| **Ben Erwin (powersimple)** | @powersimple | glTF immersive media | #2506 (synchronized AV in glTF) |
-| **najadojo** | @najadojo | MSFT_glTF_audio_emitter | Microsoft's proprietary audio emitter |
-| **pmlt** | @pmlt | WebAudio/web-audio-api | #2386 (Multi-channel PannerNode) |
-| **mastr-ch13f** | @mastr-ch13f | easyeffects | #2783 (HRIR support for Convolver) |
+| [ValveSoftware/openvr](https://github.com/ValveSoftware/openvr) | 6,661 | C++ | OpenVR SDK — basis of SteamVR, compositor timing, reprojection |
+| [google-ar/arcore-android-sdk](https://github.com/google-ar/arcore-android-sdk) | 5,237 | C++ | ARCore — motion tracking, environmental understanding, light estimation |
 
-### Episode 3: MR Interfaces & Non-Visual XR
-
-| Name | GitHub | Repo / Role | Key Issues |
+### Tier 3: Active Discussion (1k–5k)
+| Repo | Stars | Language | Focus |
 |---|---|---|---|
-| **jeromeetienne** | @jeromeetienne | AR.js creator (15.8k⭐) | Web AR pioneer |
-| **hiukim** | @hiukim | MindAR creator (2.7k⭐) | On-device AR tracking |
-| **maluoi** | @Maluoi | StereoKit maintainer | OpenXR + WebXR dual backend |
-| **davidjscott** | @davidjscott | StereoKit contributor | MR interaction patterns |
-| **bkonyves** | @bkonyves | Google AR/VR | Spatial computing platform vision |
-| **ricardmarco** | @ricardmarco | MR interaction researcher | Hand tracking ergonomics |
-| **Oliver** | @Oliver | Apple visionOS | VisionOS spatial UI |
-| **SimonScholl** | @SimonScholl | ARCore pointcloud advocate | #120 (dense depth pointcloud) |
-| **inio** | @inio | ARCore device support tracker | #89 (device fragmentation, 589 comments) |
-| **jpeltone** | @jpeltone | ARCore | #714 (rear-camera augmented faces) |
-| **ROBYER1** | @ROBYER1 | ARCore | #1275 (body pose tracking) |
-| **hbmartin** | @hbmartin | Bricky | AR + VLM for LEGO building |
-| **AdaRoseCannon** | @AdaRoseCannon | W3C Foveated Rendering CG | #1420 (dynamic foveation) |
-| **cabanier** | @cabanier | W3C Immersive Web | WebXR DOM overlays |
-| **himorin** | @himorin | WebXR contributor | Security/privacy of spatial mapping |
-| **chrisdavidmills** | @chrisdavidmills | WebXR editor | Visibility-mask events |
-| **danrossi** | @danrossi | WebXR layers work | Projection-layer rendering |
-| **aphillia** | @aphillia | WebXR input profiles | i18n for spatial interaction |
-| **IvanCampos** | @IvanCampos | visionOS-examples (405⭐) | Vision Pro passthrough, SE(3) drift |
-| **dongyoonpark** | @dongyoonpark | Microsoft MRDL | MR interaction design |
-| **richardinerickson** | @richardinerickson | Microsoft MRDL | Surfaces MR, multi-modal feedback |
+| [microsoft/MixedRealityToolkit-Unity](https://github.com/microsoft/MixedRealityToolkit-Unity) | 6,100+ | C#/Unity | MRTK — hand tracking, spatial anchors, holographic rendering |
+| [godotengine/godot-proposals](https://github.com/godotengine/godot-proposals) | Active | GDScript/C++ | Community proposals including SpatialAudioModel (HRTF) and audio spatialization |
+
+### Tier 4: Spec & Standards
+| Repo | Stars | Language | Focus |
+|---|---|---|---|
+| [WebAudio/web-audio-api](https://github.com/WebAudio/web-audio-api) | Active | JavaScript | Web Audio API spec — Multi-channel PannerNode for spatial audio |
+| [immersive-web/webxr](https://github.com/immersive-web/webxr) | Active | IDL/JS | WebXR Device API — MR input/output profiles |
+
+### Tier 5: Desktop Spatial Audio
+| Repo | Stars | Language | Focus |
+|---|---|---|---|
+| [wwmm/easyeffects](https://github.com/wwmm/easyeffects) | Active | C | PipeWire effects — HRIR/HRTF convolution for desktop |
+| [FNA-XNA/FAudio](https://github.com/FNA-XNA/FAudio) | Active | C | XAudio2/OpenAL/DirectSound3D reimplementation — ambisonic mixing |
 
 ---
 
-## Hottest Open Debates — Ranked by Engagement
+## Section 2 — Hottest Open Debates (by reactions + comments)
 
-### 🔥 Tier 1: Paradigm-Shifting (10+ comments, high reactions)
+### 🔥 Debate 1: Perceptual Latency — The 20ms Rule
 
-1. **WiVRn #1099** — Quest 3 passthrough refocus freeze (47 min!). Perceptual vs. measured latency. @xytovl
-2. **ARCore #89** — Device support requests (589 comments, 8+ years). Perceptual accessibility crisis.
-3. **ARCore #120** — Dense pointcloud from depth (357 comments, 6 years). MR surface anchoring foundation.
-4. **webxr #815** — Spec language precludes non-visual uses (41 comments). Visual-centric spec gap.
-5. **webxr #992** — Wayfinding crisis in immersive sessions (36 comments). Spatial navigation breakdown.
-6. **SteamVR-for-Linux #21** — Tracking lag (97+ comments). Foundational VR latency report.
-7. **MRC #221** — Holograms sticking to camera (18 comments). Fundamental MR registration failure.
-8. **MRC #228** — SpectatorView calibration instability (19 comments). Research reproducibility blocker.
+**Primary source:** [ValveSoftware/SteamVR-for-Linux #21](https://github.com/ValveSoftware/SteamVR-for-Linux/issues/21)
+- **Title:** "Tracking not smooth and a little delayed"
+- **Engagement:** 97 comments, 24 👍 reactions, open since Feb 2017
+- **Core complaint:** HMD tracking is delayed and unsmooth on Linux even with AsyncReprojection enabled; controllers are "interpolated/approximated"
+- **Perceptual angle:** User reports nausea after extended use — vestibular-visual conflict
 
-### 🔥 Tier 2: Important & Active (3-10 comments)
+**Secondary source:** [opentrack/opentrack #2030](https://github.com/opentrack/opentrack/issues/2030)
+- **Title:** "opentrack 2025.1 release process"
+- **Engagement:** 174 comments, 9 👍, open since May 2025
+- **Core issue:** Tracking pipeline architecture debt — Qt 5→6 migration, camera open bugs, MSVC++ build failures
+- **Perceptual angle:** Even if tracking works, the software architecture introduces frame pipeline delays that violate the perceptual threshold
 
-9. **Hubs #1853** — Spatial audio degrades with users (30 comments). Social XR audio collapse.
-10. **Hubs #2643** — User audio broken (30 comments). Social XR audio collapse.
-11. **Hubs #5057** — Audio at scale (24 comments). Social XR audio collapse.
-12. **MRC #157** — Acoustic echo cancellation broken (17 comments). AEC = spatial audio collapse.
-13. **webxr #1414** — HTML-in-canvas integration. DOM overlay rendering.
-14. **ARCore #153** — Camera control (flashlight/auto-exposure). Lighting-aware AR perception.
-15. **MRC #153** — Blocky H.264 on HoloLens 2 (32 comments). Perceptual quality vs. latency.
-16. **glTF #2137** — KHR_audio_emitter PR (58 comments). Spatial audio source standard.
-17. **MRTK #914** — MX Ink MR stylus for Meta Quest. Platform convergence without abstraction.
-18. **MRTK #511** — Vendor plugin architecture. Cross-platform MR interface design.
-19. **webxr #1420** — Dynamic foveation & visibility masking. Perceptual performance lever.
-20. **glTF #2561** — Layered audio architecture proposal. Full spatial audio stack in glTF.
+**Key contributors:** leinardi (reporter), sthalik (maintainer, 174-comment discussion driver)
 
-### 🟡 Tier 3: Long-Standing & Unresolved
+### 🔥 Debate 2: Spatial Audio — HRTFs and the WebXR Gap
 
-21. **Omnitone #2** — Mobile browser support (23 comments, 10 years). 🔥 Oldest unresolved audio gap.
-22. **webxr #390** — CSS/HTML spatial audio (8 years). Spec gap for audio in WebXR.
-23. **ARCore #1779** — Camera↔IMU clock offset 13–35ms. Invisible perceptual lag.
-24. **ALVR #334** — Latency measurements missing info. Industry underreporting by 30-50%.
+**Primary source:** [godotengine/godot-proposals #4377](https://github.com/godotengine/godot-proposals/issues/4377)
+- **Title:** "Create a Resource type for audio spatialization models"
+- **Engagement:** 16 👍 reactions, milestone 4.x, open since Aug 2021
+- **Core proposal:** A `SpatialAudioModel` Resource type that manages HRTF sets dynamically — SHOULDN'T ship a fixed HRTF dataset in core, should let users download from Asset Library
+- **Key technical constraint:** Can't allow script callbacks into audio thread (buffer underruns); can't overhaul audio architecture without more contributors
+- **Debate:** HRTFs in core vs. user-downloaded assets; surround sound (SPCAP) compatibility vs. ambisonic decoding; frequency-domain dense convolution vs. time-domain IIR
+
+**Secondary source:** [WebAudio/web-audio-api #2386](https://github.com/WebAudio/web-audio-api/issues/2386)
+- **Title:** "Support Multi-channel PannerNode"
+- **Engagement:** Labeled "Needs Discussion" + "category: new feature"
+- **Core problem:** Game engines produce ambisonic mixes (7.1.4, 3rd-5th order) that need binauralization — currently requires simulating many PannerNodes; needs ONE PannerNode that accepts ambisonic input
+- **Referenced libraries:** Omnitone (Google Chrome), Resonance Audio (Web SDK)
+
+**Tertiary source:** [wwmm/easyeffects #2783](https://github.com/wwmm/easyeffects/issues/2783)
+- **Title:** "[Feature Request] Implement HRIR support for the Convolver Effect"
+- **Engagement:** 17 comments, open since Nov 2023
+- **Core request:** Up-mix 2-ch → 5.1/7.1 → process through 8-ch IR → down-mix to stereo, all inside one Convolver using zita-convolver (64-ch support)
+
+**Quaternary source:** [FNA-XNA/FAudio #345](https://github.com/FNA-XNA/FAudio/issues/345)
+- **Title:** "(Question) Implementing Spatial Audio"
+- **Engagement:** 2 comments, open since May 2024
+- **Core question:** Does FAudio support 5.1.2 channel mixing, ambisonic encoding/decoding, JACK API? User describes a JACK → IEM ALLRAD → ASIO chain for 3rd-order ambisonics
+
+**Key contributors:** ellenhp (Godot proposal), pmlt (WebAudio spec), mastr-ch13f (easyeffects), alex-schroedsen (FAudio), Calinou (Godot Foundation)
+
+### 🔥 Debate 3: Mixed Reality Interfaces — Beyond the Visual Channel
+
+**Primary sources:**
+- [microsoft/MixedRealityToolkit-Unity](https://github.com/microsoft/MixedRealityToolkit-Unity) — hand tracking reliability, hologram drift, spatial anchor persistence
+- [immersive-web/webxr](https://github.com/immersive-web/webxr) — spec gap: no non-visual input/output profiles
+
+**Key discussion points (sourced from community):**
+1. **Hand tracking vs. controllers:** Tracking flickers in bright light; controllers are deterministic but lose the "natural" feeling
+2. **The 2D-orbit problem:** Rotating 3D objects with 2D input is fundamentally limiting
+3. **Hologram drift:** Spatial anchors at GPS accuracy (1m) are insufficient for MR; centimeter-level persistence needed
+4. **Rubber Hand Illusion in MR:** Cross-modal plasticity — if visuo-motor correlation is strong, brain "owns" any device
+5. **WebXR spec blindness:** `XRReferenceSpace` and `XRPose` exist, but nothing for auditory or haptic reference frames
+
+**Key contributors:** reduz (Juan Linietsky, Godot), punto- (Ariel Manzur, Godot), Calinou (Godot Foundation), ellenhp (spatial audio)
 
 ---
 
-## Cross-Cutting Research Themes
+## Section 3 — Contributor Directory
 
-| Theme | Evidence | Episode |
+| GitHub Handle | Repos | Expertise | Guest Potential |
+|---|---|---|---|
+| **sthalik** | opentrack (maintainer) | Tracking pipelines, Qt architecture, firmware | ⭐⭐⭐⭐⭐ — Episode 1 core guest |
+| **leinardi** | SteamVR-for-Linux | Linux VR, reprojection, user experience | ⭐⭐⭐⭐ — Episode 1 user perspective |
+| **ellenhp** | godot-proposals (author) | HRTF spatial audio, Godot audio architecture | ⭐⭐⭐⭐⭐ — Episode 2 core guest |
+| **pmlt** | web-audio-api (author) | W3C audio spec, multichannel spatialization | ⭐⭐⭐⭐⭐ — Episode 2 spec perspective |
+| **mastr-ch13f** | easyeffects | Desktop spatial audio, HRIR convolution | ⭐⭐⭐⭐ — Episode 2 practical perspective |
+| **alex-schroedsen** | FAudio | XAudio2, OpenAL, ambisonic signal chains | ⭐⭐⭐⭐ — Episode 2 implementation perspective |
+| **reduz (Juan Linietsky)** | godot (co-creator) | 3D engine architecture, frame timing, XR | ⭐⭐⭐⭐⭐ — Episodes 1 & 3 |
+| **punto- (Ariel Manzur)** | godot (co-creator) | 2D-first design philosophy, 3D interfaces | ⭐⭐⭐⭐ — Episode 3 design perspective |
+| **Calinou** | godot-proposals (maintainer) | Godot 4.x milestones, audio architecture | ⭐⭐⭐⭐ — Episodes 2 & 3 |
+
+---
+
+## Section 4 — Cross-Cutting Themes
+
+| Theme | Episodes | Key Insight |
 |---|---|---|
-| **Perceptual ≠ Measured** | WiVRn #1099, ALVR #334, ARCore #1779 | E1 |
-| **Spatial Audio Has No Standard** | webxr #390 (8 yrs), omnitone #2 (10 yrs) | E2 |
-| **MR Registration Fragility** | MRC #228, MRC #221 | E3 |
-| **Social XR Audio Collapse** | Hubs #1853/#2643/#5057 | E2 |
-| **Spec Accessibility Gap** | webxr #815 (41 comments) | E2 & E3 |
-| **Research Reproducibility Crisis** | MRC #228, ISM bug (SAF #58), SONIMO bugs (SAF #55) | E1 & E2 |
-| **Perceptual Accessibility** | ARCore #89 (589 comments) | E3 |
-| **Standards Convergence (glTF ↔ WebXR)** | KHR_audio_emitter, KHR_audio_graph, KHR_audio_environment | E2 & E3 |
-| **Platform Convergence Without Abstraction** | MRTK #914, MRTK #511 | E3 |
-| **Frame Irregularity > Average Latency** | WiVRn #282, #1099 | E1 |
+| **The 20ms rule is physiological, not engineering** | 1, 3 | Vestibular-visual conflict makes latency a medical issue, not a performance metric |
+| **HRTFs are identity, not settings** | 2 | Your head shape determines your HRTF; one-size-fits-all is perceptually wrong |
+| **WebXR is visually biased** | 2, 3 | The spec defines visual reference spaces but ignores auditory/haptic frames |
+| **Architecture debt kills perception** | 1, 2 | OpenTrack's Qt 5 debt and Godot's audio thread constraints both trace back to architectural choices |
+| **Cross-modal binding is the real presence test** | 2, 3 | If audio doesn't match visual origin, or if hand tracking lags by 50ms, presence collapses |
 
 ---
 
-*Last updated: 2026-09-17 | Maintainer: podcast research team | Contribute: add issue links, new findings, or guest suggestions as PRs or comments*
+## Appendix: Search Queries Used
+
+- `augmented reality mixed reality stars:>1000`
+- `spatial computing LiDAR 3D reconstruction stars:>500`
+- `ARCore ARKit spatial anchors stars:>2000`
+- `virtual reality steam openvr stars:>1000`
+- `godot 3D engine stars:>5000`
+- `webxr immersive reality stars:>300`
+- `steamvr openvr stars:>5000`
+- `perceptual latency is:open sort:reactions-desc`
+- `mixed reality interface hand tracking is:open sort:reactions-desc`
+- `spatial audio HRTF ambisonics is:open sort:reactions-desc`
+- `latency OR "time warp" OR "reprojection" repo:NianticLargeWorlds`
+- `code: "perceptual" "latency" language:cpp extension:cpp`

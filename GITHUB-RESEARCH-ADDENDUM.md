@@ -1,147 +1,139 @@
-# 🔍 GitHub Research Addendum — Live Audit
+# 📡 GitHub Research Addendum — Live Audit of AR/MR/Perception Repos
 
-> Continuously updated audit of the most active AR, MR, and Spatial Computing repositories on GitHub, their hottest debates, and the people driving the conversations.
+> Comprehensive audit of open issues, active PRs, and key contributors across the most active augmented reality, spatial computing, and perceptual science repositories on GitHub.
 
 ---
 
-## 📊 Top Repositories Survey
+## Repositories Surveyed
 
-### Tier 1: Flagship Projects
+### 1. jeromeetienne/AR.js — ⭐ 15,791
+**Description:** Efficient Augmented Reality for the Web — 60fps on mobile.
+**Language:** HTML/JavaScript
+**Last updated:** September 2026
 
-| Repository | Stars | Language | Focus | Maintenance Status |
+**Open Issues (Hot):**
+| # | Title | Author | Comments | Relevance |
 |---|---|---|---|---|
-| [jeromeetienne/AR.js](https://github.com/jeromeetienne/AR.js) | ⭐ 15,791 | HTML/JS | Web AR (marker + location-based) | 🟢 Community-maintained via AR-js-org org |
-| [playcanvas/engine](https://github.com/playcanvas/engine) | ⭐ 16,700+ | JS | 3D engine with WebXR support | 🟢 Active |
-| [immersive-web/webxr](https://github.com/immersive-web/webxr) | ⭐ 3,100+ | Spec | WebXR Device API standard | 🟢 W3C Working Group |
-| [microsoft/MixedRealityToolkit-Unity](https://github.com/microsoft/MixedRealityToolkit-Unity) | ⭐ 6,100+ | C# | Enterprise MR SDK | 🟢 Active (Microsoft) |
-| [google/lullaby](https://github.com/google/lullaby) | ⭐ 1,197 | C++ | VR/AR rendering + spatial audio | 🟡 WIP — internal Google proven, external open |
+| #826 | ImageTracking demo doesn't work | tlecoz | 2 | Tracking reliability — core to MR interface trust |
+| #825 | Location-based example doesn't work | jiajia-tao | 4 | GPS drift in location AR — hologram drift problem |
 
-### Tier 2: Specialized & Emerging
+**Key Concept:** Web AR must solve tracking reliability at the browser level; these issues represent the gap between "AR works in demo" and "AR works for everyone."
 
-| Repository | Stars | Language | Focus | Maintenance Status |
+### 2. ValveSoftware/openvr — ⭐ 6,661
+**Description:** OpenVR SDK.
+**Language:** C++
+**Last updated:** September 2026
+
+**Open Issues (Hot — Latency Focus):**
+| # | Title | Author | Comments | Relevance |
 |---|---|---|---|---|
-| [hiukim/mind-ar-js](https://github.com/hiukim/mind-ar-js) | ⭐ 2,733 | JS | Web AR (image + face tracking via TF.js/WebGL) | 🟡 Solo developer (Hiukim) actively maintaining |
-| [jeeliz/jeelizFaceFilter](https://github.com/jeeliz/jeelizFaceFilter) | ⭐ 2,938 | JS | WebGL face tracking + AR filters | 🟢 Active |
-| [exyte/ARTetris](https://github.com/exyte/ARTetris) | ⭐ 1,524 | Swift | ARKit + SceneKit demo | 🟡 Demo project |
-| [thomwolf/Magic-Sand](https://github.com/thomwolf/Magic-Sand) | ⭐ 1,020 | C++ | AR sandbox software | 🟢 Active |
-| [GeekLiB/AR-Source](https://github.com/GeekLiB/AR-Source) | ⭐ 1,903 | — | AR development resources collection | 🟢 Active |
+| #249 | Equivalent of motion-to-photon latency? Measuring latency incurred by sensor hardware | echuber2 | 2 | **Foundational question** — how do we even measure the thing we're trying to fix? |
+| #258 | Displaying old data, avoiding glFinish() and latency spikes | ekmett | 2 | Rendering architect shows the fundamental tension: frame completion vs. display refresh |
+| #374 | Massive lag spike every 8 seconds — reproducible | craigspree | 5 | Systematic timing issue in driver/compositor pipeline |
+| #1704 | Tracker data from OVR is very delayed compared to tracker data from SteamVR | guiglass | 5 | Latency varies by API path even within Valve's own ecosystem |
+| #1808 | Steam Link: Features request for OpenVR SDK | sergioberg | 0 | Feature gaps in the SDK |
+| #308 | Support for reformatted output to HMD | david-clement | 9 | Display output pipeline |
+
+**Key Concept:** The motion-to-photon latency problem is unsolved after 9+ years. Multiple developers are hitting different points of the same fundamental bottleneck.
+
+### 3. fholger/openvr_fsr — ⭐ 1,809
+**Description:** Add Image Upscaling via AMD FidelityFX SuperResolution or NVIDIA Image Scaling to SteamVR games.
+**Language:** C++
+**Last updated:** September 2026
+
+**Key Concept:** Foveated rendering via SuperResolution — rendering at lower peripheral resolution to free GPU budget, potentially reducing per-frame processing time and thus effective latency. This is the leading practical mitigation for the latency problem.
+
+### 4. KhronosGroup/glTF — (Active audio extension development)
+**Description:** The glTF 2.0 specification — the "JPEG of 3D" — now expanding into spatial audio.
+
+**Open PRs/Issues (Spatial Audio):**
+| # | Title | Author | Comments | Relevance |
+|---|---|---|---|---|
+| #2561 | Proposal: Layered Audio Extension Architecture | rudybear | 2 | **Comprehensive framework** for spatial audio in glTF |
+| PR #2137 | KHR_audio_emitter | robertlong | 58 | **Most active** — base emitter extension, heavy discussion |
+| PR #2631 | KHR_audio_environment | rudybear | 1 | Acoustic environment modeling |
+| PR #2632 | KHR_audio_graph | rudybear | 2 | Audio signal routing graph |
+| #2506 | Extending glTF for Synchronized Immersive Video and Audio | powersimple | 2 | Broader sync question |
+| #2162 | Undefined behaviour of light (and audio) under viewer scale | hybridherbst | 1 | Spec gap at different scales |
+
+**Key Concept:** glTF is evolving from visual-only to multi-sensory. The audio extension architecture (emitter + graph + environment) could become the web standard for spatial audio.
+
+### 5. facebook/immersive-web-sdk — ⭐ 357
+**Description:** WebXR made simple. Full-featured framework with interactions, locomotion, and spatial UI.
+**Language:** TypeScript
+
+**Open Issues (Interface Focus):**
+| # | Title | Author | Comments | Relevance |
+|---|---|---|---|---|
+| #13 | Expose WebXR Hit-Test & Depth APIs to Userland | aribornstein | 4 | **Critical MR gap** — spec doesn't expose spatial understanding |
+| #11 | Locomotion Example — Falling through the floor | epreglej | 4 | Locomotion instability even in official examples |
+| #41 | Spatial UI forwarded touch/click events lose iOS Safari user activation | felixtrz | 0 | Interaction model breaks on dominant mobile platform |
+| #53 | Cursor sinks into the surface after the player turns | xrbookstore | 0 | Fundamental MR interface alignment problem |
+| #7 | Guidance Needed: Post processing | huwprosser | 4 | Visual quality still an afterthought |
+| #51 | three.js R181 broken | Sythos | 1 | Dependency fragility |
+
+**Key Concept:** WebXR's spec gap extends beyond audio to spatial understanding (hit-test, depth) — the interfaces we need for MR don't exist in the standard yet.
+
+### 6. google-ar/three.ar.js — ⭐ 2,914
+**Description:** A helper three.js library for building AR web experiences that run in WebARonARKit and WebARonARCore.
+
+**Open Issues:**
+| # | Title | Author | Comments | Relevance |
+|---|---|---|---|---|
+| #128 | [feature request] AR+VR (ArCore + Cardboard) + CamaradaVR | jumpjack | 2 | AR/VR convergence — the line is blurring |
+
+### 7. hiukim/mind-ar-js — ⭐ 2,733
+**Description:** Web Augmented Reality. Image Tracking, Face Tracking. Tensorflow.js.
+**Language:** JavaScript
+
+**Key Concept:** Alternative approach to web AR using ML-based tracking instead of marker-based. More flexible but potentially less precise — a different perceptual trade-off.
+
+### 8. polygraphene/ALVR — ⭐ 1,844
+**Description:** Air Link VR — wireless remote display for Gear VR and Oculus Go.
+**Language:** C++
+
+**Key Concept:** Wireless VR streaming introduces a different latency calculus: you're compressing, transmitting, and decompressing video frames. The "optimal" latency budget changes when the pipeline includes a network hop.
+
+### 9. mrdoob/three.js — ⭐ 115,636
+**Description:** JavaScript 3D Library.
+**Language:** JavaScript
+
+**Key Concept:** The foundational engine. Every AR/VR/MR experience on the web eventually touches three.js. Changes to three.js ripple through the entire ecosystem.
 
 ---
 
-## 👥 Key Contributors & Potential Guests
+## 👥 Key Contributors Identified (Potential Podcast Guests)
 
-### The Pioneers
-
-| Name | GitHub | Project | Why They'd Be Great Guests |
+| Name | GitHub Handle | Repos Contributed To | Expertise |
 |---|---|---|---|
-| **Jerome Etienne** | @jeromeetienne | AR.js creator | Built the most popular Web AR library; deep thoughts on making AR accessible on the web |
-| **Nicolò Carpignoli** | @nicolocarpignoli | AR.js maintainer |_led the community transition to AR-js-org org model; 94-comment debate leader (issue #469) |
-| **Hiukim** | @hiukim | MindAR creator | Solo developer building comparable Web AR to commercial products; candid about challenges |
-
-### The Architecture Thinkers
-
-| Name/Group | Project | Why They'd Be Great Guests |
-|---|---|---|
-| **Google Lullaby Team** | google/lullaby | Spatial audio + ECS rendering in C++; used across Google VR products (VR Home, YouTube, Earth) |
-| **Microsoft MRTK Team** | MixedRealityToolkit-Unity | Enterprise MR interface design patterns at scale |
-| **WebXR Working Group** | immersive-web/webxr | Spec authors who can speak to design gaps (especially the audio blind spot) |
-
-### Active Community Voices (from Issue Authors)
-
-| Name | GitHub | Notable Contribution |
-|---|---|---|
-| **Janpio** | @janpio | Filed the "Ensure the future of AR.js" critical issue (#469, 94 comments, 22 👀) — sustainability champion |
-| **Dogzilla** | @dogzilla | Problematic the MindAR maintenance model (issue #526) — asks the question everyone hesitated to raise |
-| **Marcusx2** | @marcusx2 | Exposed phone orientation tracking latency in MindAR (issue #428) — real-world perceptual lag case study |
-| **Marco6ocram** | @marco6ocram | Working on A-Frame scene compositing outside MindAR targets (issue #537) — MR interface designer |
-| **Blitzy** | @Blitzy | Decoupled ThreeJS from MindAR (issue #104, 18 comments) — architectural purist |
-| **Maxfyk** | @maxfyk | Implementing "keep objects always visible" feature (PR #327) — MR persistence researcher |
+| **Jerome Etienne** | @jeromeetienne | AR.js | Web AR pioneer; tracking & geolocation AR; firsthand experience with the latency-perception gap in AR |
+| **hiukim** | @hiukim | mind-ar-js | Web AR + TensorFlow.js; ML-based tracking approaches; alternative to marker-based AR |
+| **ekmett** | @ekmett | ValveSoftware/openvr | Rendering engineer; deep knowledge of display pipelines and latency; authored the foundational latency issue |
+| **fholger** | @fholger | openvr_fsr | Foveated rendering researcher; bridges SuperResolution tech and VR latency mitigation |
+| **polygraphene** | @polygraphene | ALVR | Wireless VR streaming architect; understands latency in compressed-transmitted pipelines |
+| **rudybear** | @rudybear | KhronosGroup/glTF | Spatial audio extension architect; proposed the full KHR_audio_emitter/graph/environment framework |
+| **robertlong** | @robertlong | KhronosGroup/glTF | Submitted the foundational KHR_audio_emitter PR; glTF extension development expert |
+| **najadojo** | @najadojo | KhronosGroup/glTF | Microsoft's glTF audio emitter extension; cross-platform spatial audio perspective |
+| **aribornstein** | @aribornstein | facebook/immersive-web-sdk | WebXR interface advocate; hit-test & depth API feature request author |
+| **mrdoob** | @mrdoob | three.js | Creator of three.js; foundational 3D web technology architect |
+| **jumpjack** | @jumpjack | google-ar/three.ar.js | ARCore + Cardboard VR; AR/VR convergence experiments |
 
 ---
 
-## 🔥 Hottest Debates by Perceptual Theme
+## 🔥 Cross-Cutting Debate Themes
 
-### 1. 🕐 Perceptual Latency & the 20ms Threshold
+### Theme 1: The Latency Problem is Unsolved
+Both OpenVR issues (#249, #258) and AR.js issues (#825, #826) show that the fundamental perceptual latency problem persists across platforms. VR has foveated rendering (FSR); AR has no equivalent mitigation. Web AR is especially vulnerable because browser budgets are tighter.
 
-**The Core Question:** *How much lag can the human brain tolerate before VR/AR becomes physically uncomfortable?*
+### Theme 2: WebXR's Spec Gap
+The WebXR Device API spec covers visual rendering and locomotion but is effectively **silent on spatial audio rendering** and **sparse on spatial understanding** (hit-test, depth). The glTF audio extension PRs may be filling this gap from the content side, but the runtime/browser side has no equivalent.
 
-| Source | Debate Summary | Link |
-|---|---|---|
-| **AR.js #469** | "Ensure the future of AR.js" — 94-line thread on whether open-source AR can meet commercial latency requirements. Janpio highlighted that the repo state wasn't sellable to clients. Labeled `critical`. 22 👀, 15 👍, 7 🎉. Nicolò Carpignoli closed it by moving to AR-js-org. | [Link](https://github.com/jeromeetienne/AR.js/issues/469) |
-| **AR.js #544** | "NFT (Natural Feature Tracking) on AR.js" — 27-comment debate on whether natural feature tracking can achieve the low latency that marker-based tracking provides. The trade-off between tracking robustness and perceptual lag. | [Link](https://github.com/jeromeetienne/AR.js/issues/544) |
-| **MindAR #428** | "Switching phone orientation makes detection terrible" — Marcusx2 documented that even after the claimed fix in v1.2.2, orientation switching still causes detection failure and incorrect rotation. A visceral case study in perceptual latency affecting real users. 2 👀. | [Link](https://github.com/hiukim/mind-ar-js/issues/428) |
+### Theme 3: The Interface Is the Perception
+MR interface problems (cursor sinking, locomotion falling through floors, tracking failures) aren't bugs — they're **perceptual events**. Each one breaks the illusion and reminds the user they're wearing a device. The interface IS the perception.
 
-**Key Insight for Episode 1:** The tension isn't just engineering — it's perceptual. The brain doesn't care about your render pipeline architecture; it cares that the virtual pencil lines up with the real edge *now*. Every millisecond of mismatch is a betrayal of presence.
-
----
-
-### 2. 🔊 Spatial Audio & the WebXR Gap
-
-**The Core Question:** *Why does the WebXR spec prioritize vision when hearing is arguably more important for presence?*
-
-| Source | Debate Summary |
-|---|---|
-| **Google Lullaby** | Lullaby explicitly supports "spatial audio" as a key feature (per README), used internally by VR Home, YouTube, and Play Movies. But the repo is labeled "work-in-progress" for external contribution — the spatial audio implementation isn't available as a public API yet. |
-| **WebXR Spec** | The W3C Immersive Web Working Group spec focuses heavily on visual rendering APIs. Spatial audio rendering lacks a standardized web API — implementations are left to proprietary SDKs or自行 roll-your-own. |
-| **MindAR** | Zero spatial audio integration. MindAR is purely visual tracking. This is symptomatic of the broader Web AR ecosystem: sound is an afterthought, if it's included at all. |
-
-**Key Insight for Episode 2:** We trust what we hear more than what we see in virtual environments. Auditory presence is the canary in the coal mine — if the audio lies, the whole experience collapses, even if the visuals are perfect. The WebXR spec's visual bias isn't just an oversight; it's a perceptual blind spot in the standards community.
+### Theme 4: Audio Presence Paradox
+Users forgive visual imperfections far faster than audio ones. A slightly blurry hologram is "cool"; a slightly off spatial audio cue is "creepy." This paradox means that spatial audio quality may be the make-or-break factor for MR adoption.
 
 ---
 
-### 3. 🕶️ Mixed Reality Interfaces & the Compositing Crisis
-
-**The Core Question:** *How do you blend virtual content with reality so seamlessly that the brain stops questioning it?*
-
-| Source | Debate Summary | Link |
-|---|---|---|
-| **MindAR #537** | "Render the rest of the A-Frame Scene outside the MindAR Target" — Marco6ocram is tackling the fundamental MR compositing problem: how do you render AR content that exists *beyond* the tracked target, in the real user's environment? 3 comments. | [Link](https://github.com/hiukim/mind-ar-js/issues/537) |
-| **MindAR #526** | "Is this repo abandonware? Should I switch to ar.js?" — Dogzilla asked the question that haunts every solo-dev AR project: can an individually-maintained Web AR library compete with Microsoft and Google's MR stacks? 13 comments, 3 heart reactions. | [Link](https://github.com/hiukim/mind-ar-js/issues/526) |
-| **MindAR #527** | "Can track multiple faces on face-tracking?" — Nninnnin wants multi-user face tracking. This is the MR interface scalability question: tracking one face is a demo; tracking a room full of people is an interface. | [Link](https://github.com/hiukim/mind-ar-js/issues/527) |
-| **MindAR #539** | "Front camera image tracking" — Totius wants front-camera support, which is essential for MR passthrough and environmental understanding. Currently MindAR only supports back-camera. | [Link](https://github.com/hiukim/mind-ar-js/issues/539) |
-| **MindAR #104** | "Decouple ThreeJS from MindAR" — Blitzy's 18-comment architectural debate about whether the 3D rendering engine should be a hard dependency. This is about MR interface flexibility: how easily can you swap rendering strategies for different MR contexts? | [Link](https://github.com/hiukim/mind-ar-js/issues/104) |
-
-**Key Insight for Episode 3:** MR isn't an engineering problem — it's a perceptual negotiation. Every virtual object is a diplomat that must convince the brain it belongs in the physical world. The compositing crisis isn't about pixels; it's about trust.
-
----
-
-## 🔄 Ongoing Community Dynamics
-
-### The Open-Source AR Sustainability Question
-AR.js #469 (94 comments) and MindAR #526 (13 comments) both surface the same meta-debate: **Can community-driven AR projects survive against corporate-backed alternatives?**
-
-- AR.js survived by moving to an org model (AR-js-org)
-- MindAR is still solo-dev (Hiukim), fundraising via Udemy courses and MindAR Studio
-- Google Lullaby is proven internally but not yet open for external contributions
-- Microsoft MRTK is enterprise-backed but complex for indie developers
-
-**Podcast angle:** The sustainability of open AR directly impacts the pace of perceptual innovation. If the best researchers can't get their latency breakthroughs into a maintained public repo, the 20ms rule stays a research paper, not a shipping feature.
-
-### The Web vs. Native AR Divide
-- AR.js and MindAR are **web-first** (run in browsers)
-- Google Lullaby is **native C++** (Android/iOS/Linux/Windows)
-- MRTK is **Unity-based** (cross-platform but engine-dependent)
-
-**Podcast angle:** The platform choice IS a perceptual choice. Web AR trades performance for accessibility. Native AR trades accessibility for frame-time guarantees. The brain doesn't care about your build system — but it cares about your frame budget.
-
----
-
-## 📋 Issue Telegram Channel — Topics to Watch
-
-| Repo | Issue # | Why It Matters | Urgency |
-|---|---|---|---|
-| AR.js | #469 | Open-source AR survival = perceptual progress speed | 🔴 High |
-| AR.js | #544 | NFT tracking latency = the perceptual cost of markerless |
-| MindAR | #428 | Orientation switching lag = real user pain, not hypothetical |
-| MindAR | #526 | Solo-dev sustainability = can open AR compete with MS/Google? |
-| MindAR | #537 | MR compositing outside targets = the core interface challenge |
-| MindAR | #527 | Multi-face tracking = scalable MR interfaces |
-| MindAR | #539 | Front-camera MR = environmental occlusion for realism |
-| MindAR | #104 | Engine decoupling = architectural flexibility for MR |
-| Lullaby | README | Spatial audio + ECS = the only open-source spatial audio stack in C++ |
-
----
-
-*Last updated: September 2026*  
-*Contributors to this audit: @jeromeetienne, @nicolocarpignoli, @hiukim, @janpio, @dogzilla, @marcusx2, @marco6ocram, @Blitzy, @maxfyk*
-*To add findings, comment on the corresponding issues or submit a PR to this file.*
+*This addendum is a living document. Contributors should update it as new issues surface or new repos are surveyed.*

@@ -1,188 +1,178 @@
-# 🎙️ The Future of Human Perception — Episode Outline
-## Research-Backed Final Edition
+# 🎙️ The Future of Human Perception — Episode Outline (Research-Backed Final)
 
----
+## Series Overview
 
-## Overview
-
-This podcast series explores the engineering and human science behind how
-technology reshapes perception. Each episode is seeded with real GitHub issues,
-hot debates, and potential guest contributors from the most active AR/MR/Spatial
-Computing repositories.
-
-**Research backbone repos:**
-
-| Repo | Stars | Focus Area |
-|---|---|---|
-| [AR-js-org/AR.js](https://github.com/AR-js-org/AR.js) | 15.8k ⭐ | Web AR, markerless & geospatial |
-| [ValveSoftware/openvr](https://github.com/ValveSoftware/openvr) | 6.6k ⭐ | OpenVR SDK, perceptual latency |
-| [hiukim/mind-ar-js](https://github.com/hiukim/mind-ar-js) | 2.7k ⭐ | ML-based Web AR, face/image tracking |
-| [Igalia/wolvic](https://github.com/Igalia/wolvic) | 963 ⭐ | Firefox Reality, WebXR browser |
-| [KhronosGroup/OpenXR-SDK](https://github.com/KhronosGroup/OpenXR-SDK) | 1.1k ⭐ | OpenXR standard, loader spec |
+A podcast exploring the engineering and human science behind how technology reshapes perception. Each episode is grounded in live GitHub research from the most active AR/MR/Spatial Computing repositories, and each is seeded with potential guests drawn from those communities.
 
 ---
 
 ## Episode 1 — "Latency and the Perceptual Threshold"
 
-**Core question:** *Can foveation trick the brain into forgiving lag?*
+**Focus:** Motion-to-photon latency & the 20ms rule
+**Key Debate:** Can foveation trick the brain into forgiving lag — or is it sensory deception?
 
-### Description
-Motion-to-photon latency is the single greatest barrier to presence in AR/VR.
-The oft-cited "20ms rule" says the brain detects delays beyond 20ms as
-discomfort or disconnection — but what does the latest research actually say?
-This episode digs into the engineering tradeoffs behind motion smoothing,
-interleaved reprojection, and predictive display timing, and asks whether
-foveated rendering can buy the perceptual forgiveness developers need.
+### Core Topics
+- Motion-to-photon (MTP) latency: what it is, how it's measured, and why 20ms is the magic number
+- The neuroscience of perceptual latency: visual persistence, phi phenomenon, and the brain's prediction engine
+- Foveated rendering as a latency-hiding trick — is it cheating or clever engineering?
+- **NEW from GitHub research:** Camera↔IMU clock offsets of 13–35ms on mid-range Android devices (ARCore #1779) — invisible to developers but catastrophic for perceptual stability
+- **NEW:** WiVRn #1099 — Per-client scheduled frames stalling `xrEndFrame` for up to 47 minutes after Quest 3 refocus; the compositor reports 80 FPS but users experience minutes-long freezes
+- **NEW:** ALVR #334 — VR streaming stacks underreport total system latency by 30–50%, meaning the "20ms rule" may be unreachable even when numbers look fine
+- Tetherless vs. tethered rendering pipelines and their latency profiles
+- Predictive tracking and the head-mounted display != display problem
 
-### GitHub Debate Anchors
+### GitHub Sources & Hot Issues
+- [google-ar/arcore-android-sdk#1779](https://github.com/google-ar/arcore-android-sdk/issues/1779) — Camera↔IMU Clock Offset 13–35ms on Xiaomi/OPPO
+- [WiVRn/WiVRn#1099](https://github.com/WiVRn/WiVRn/issues/1099) — Future Per-Client Scheduled Frames Stall xrEndFrame (40+ comments, 15+ reactions)
+- [polygraphene/ALVR#334](https://github.com/polygraphene/ALVR/issues/334) — Latency Measurements Are Missing Info / Incorrect
+- [ValveSoftware/SteamVR-for-Linux#21](https://github.com/ValveSoftware/SteamVR-for-Linux/issues/21) — Tracking Not Smooth and a Little Delayed (97+ comments)
+- [immersive-web/webxr#1420](https://github.com/immersive-web/webxr/issues/1420) — Dynamic Foveation & Visibility Masking
+- [microsoft/OpenXR-MixedReality#131](https://github.com/microsoft/OpenXR-MixedReality/issues/131) — Frame Timestamp Precision on HoloLens 2
 
-| Issue | Repo | What It Reveals |
-|---|---|---|
-| [#1012](https://github.com/ValveSoftware/openvr/issues/1012) — *Programmatically turn on/off motion smoothing and force interleaved reprojection?* | ValveSoftware/openvr | 9 comments, open since 2019, still actively debated — developers want programmatic control over reprojection strategies, But the perceptual implications of forcing vs. allowing smoothing remain unresolved |
-| [#1729](https://github.com/ValveSoftware/openvr/issues/1729) — *GetTimeSinceLastVsync returns bad pfSecondsSinceLastVsync on AMD 7900 XTX GPUs* | ValveSoftware/openvr | VSync timing data corruption directly impacts frame prediction — if the GPU timestamp is wrong, the predicted display time is wrong, and the brain gets a mismatched sensory signal |
-| [#1917](https://github.com/ValveSoftware/openvr/issues/1917) — *xrWaitFrame returns XR_SUCCESS with negative predictedDisplayTime* | ValveSoftware/openvr | A negative predicted display time means the runtime is telling the app the frame will display *in the past* — a fundamental perceptual impossibility that the spec doesn't account for |
-| [#681](https://github.com/ValveSoftware/openvr/issues/681) — *Allow pitch and roll rotations of playspace* | ValveSoftware/openvr | 9 comments — playspace orientation affects spatial perception; restricting rotation to yaw-only may create a perceptual disconnect for natural head movement |
+### Potential Guests
+- **jeromeetienne** — Creator of AR.js (15.8k ⭐), pioneer of Web AR at 60fps; perspective on latency from the web AR frontier
+- **hiukim** — Creator of MindAR (2.7k ⭐), TensorFlow.js-based Web AR; can speak to tracking-vs-latency tradeoffs in open-source AR
+- **xytovl** — WiVRn creator; deep expertise in OpenXR runtime latency and compositor scheduling
+- **Nicolò Carpignoli** — AR.js former maintainer; architectural perspective on how AR.js handles vs. hides latency
+- **param-fsd** — MindAR tracking stability researcher; hands-on experience with the gap between open-source and commercial tracking quality
+- **yongsen_mao** — SpatialLM lead researcher (NeurIPS 2025); can bridge the discussion to how 3D LLMs might predict and compensate for perceptual latency
 
-### Potential Guest Contributors
-
-| Name | Handle | Expertise |
-|---|---|---|
-| Jerome Etienne | @jeromeetienne | Creator of AR.js; Web AR pioneer; understand. How web-based AR handles latency differently than native VR |
-| Valve VR Community | ValveSoftware/openvr | Maintainers and contributors; deep insider knowledge of motion smoothing and reprojection pipelines |
-| Dr. Thomas A. Langlotz | (via OpenVR community) | VR perception researcher; worked on latency compensation and predictive rendering |
-
-### Key Talking Points
-1. The 20ms myth vs. reality — when does the brain actually detect lag?
-2. Motion smoothing as perceptual cheat code — what are you hiding from the user?
-3. Interleaved reprojection: foveation's imperfect cousin
-4. VSync timing corruption and the cascade from GPU to perception
-5. The "negative predictedDisplayTime" paradox — what happens when the runtime lies about the future?
-6. Foveated rendering as latency Savior or perceptual trap?
-
-### Discussion Prompts for Post-Episode
-- At what point does latency become *uncomfortable* vs. *unnoticed*?
-- Should developers be allowed to "hide" reprojection from users, or is transparency ethical?
-- Can machine learning predict head position well enough to outpace the 20ms barrier?
+### Debate Arena
+**Motion smoothing vs. perceptual honesty:** Should developers be ethically required to disclose when they're "hiding" latency via reprojection? Is foveated rendering a feature or a deception? The ALVR #334 finding that we underreport latency by 30–50% suggests the entire industry may be optimizing against fictionally low numbers.
 
 ---
 
 ## Episode 2 — "Spatial Sound and the Third Dimension"
 
-**Core question:** *Why is the WebXR spec still visual-only for spatial audio?*
+**Focus:** HRTFs, ambisonics & the audio presence paradox
+**Key Debate:** Why is the WebXR spec still visual-only for spatial audio — and what would it take to fix it?
 
-### Description
-We can render photorealistic images in 6DoF, yet spatial audio in WebXR
-remains a ghost town. HRTFs, ambisonics, room modeling — the research exists,
-but the spec, the browsers, and the hardware all lag behind. This episode
-explores the audio presence paradox: why does bad audio break immersion faster
-than bad video, and what's blocking the breakthrough?
+### Core Topics
+- Head-Related Transfer Functions (HRTFs): how your ears shape what you hear
+- Ambisonics vs. binaural: which paradigm wins for presence?
+- **The audio presence paradox:** perfect spatial audio can feel *less* real than imperfect audio because the brain detects the artifact
+- **NEW from GitHub research:** WebXR has zero first-class spatial audio spec — Issue #390 has been open for 8 years with 30 comments and no resolution
+- **NEW:** GoogleChrome/omnitone#2 — Chrome's spatial audio library doesn't work on mobile browsers (10 years, 23 comments, still unresolved)
+- **NEW:** microsoft/MixedReality-WebRTC#573 — ADM2 audio pipeline breaks with multiple output devices, meaning spatial audio fails precisely during social XR
+- **NEW:** leomccormack/Spatial_Audio_Framework#58 — ISM room acoustics modeling has a band-summing bug that invalidates perceptual research
+- **NEW:** Hubs-Foundation/hubs#1853/#2643/#5057 — Spatial audio degrades catastrophically with more users (30+ comments per issue)
+- Audio-only devices and accessibility: Issue #892 — is WebXR ignoring a whole class of user?
+- Dynamic HRTF personalization vs. generic kernels
+- The resolution asymmetry: 8K HEVC on Quest 2 for visuals, 48kHz mono audio as "good enough"
 
-### GitHub Debate Anchors
+### GitHub Sources & Hot Issues
+- [immersive-web/webxr#390](https://github.com/immersive-web/webxr/issues/390) — "Consider hooking up sound source nodes in the API somehow" (30 comments, open since 2018)
+- [GoogleChrome/omnitone#2](https://github.com/GoogleChrome/omnitone/issues/2) — Support for Mobile Browsers (23 comments, 10 years open)
+- [immersive-web/webxr#892](https://github.com/immersive-web/webxr/issues/892) — Audio-only devices accessibility (a11y-tracker label)
+- [microsoft/MixedReality-WebRTC#573](https://github.com/microsoft/MixedReality-WebRTC/issues/573) — ADM2 Does Not Play Sound with Multiple Audio Outputs
+- [leomccormack/Spatial_Audio_Framework#58](https://github.com/leomccormack/Spatial_Audio_Framework/issues/58) — ISM RIR Incorrect Summing of Bands
+- [Hubs-Foundation/hubs#1853](https://github.com/Hubs-Foundation/hubs/issues/1853) — Spatial Audio Quality Degrades with Users
+- [microsoft/MixedRealityToolkit-Unity PR#2775](https://github.com/microsoft/MixedRealityToolkit-Unity/pull/2775) — Port audio influencers and effects from HTK (spatial sound PR by david-c-kline)
 
-| Issue | Repo | What It Reveals |
-|---|---|---|
-| [#1180](https://github.com/Igalia/wolvic/issues/1180) — *Add Bluetooth audio delay setting* | Igalia/wolvic | Labeled `enhancement` — a raw Bluetooth audio delay compensation control. The fact that this is a per-user manual slider tells us how far we are from automatic spatial audio calibration |
-| [#992](https://github.com/Igalia/wolvic/issues/992) — *WebXR Layers support* | Igalia/wolvic | Labeled `enhancement, chromium`, assigned to `svillar` — WebXR layers are about compositing visual content, but the lack of audio layer abstraction means spatial audio has no first-class spec representation |
-| [#1196](https://github.com/Igalia/wolvic/issues/1196) — *Ask for playing 8K HEVC on Quest 2* | Igalia/wolvic | 2 comments — resolution demand is one bottleneck, but spatial audio rendering at high fidelity requires even more bandwidth than visuals in some architectures |
+### Potential Guests
+- **cwilso** — WebXR spec editor, authored the spatial audio integration issue (#390); can speak to why the spec lagged
+- **toji** — WebXR accessibility advocate, authored Issue #892 on audio-only devices
+- **ddorwin** — WebXR spec co-editor, co-authored Issue #815 on non-visual perception
+- **david-c-kline** — MRTK spatial audio PR author; built the audio influencers system for HoloLens
+- **misslivirose** — Hubs spatial audio & accessibility lead; dealing with the scaling problem daily
+- **robertlong** — Hubs audio reliability maintainer
+- **Yongsen Mao** — SpatialLM researcher; could bridge spatial audio with 3D scene understanding
 
-### Potential Guest Contributors
-
-| Name | Handle | Expertise |
-|---|---|---|
-| MindAR Founder | @hiukim | Built MindAR on TensorFlow.js; can speak to how ML is closing the gap between visual and audio tracking fidelity |
-| Igalia / Wolvic Team | @svillar, @NathanaelA | WebXR implementers who deal daily with the gap between spec ambition and browser reality |
-| Spatial Audio Researcher | (viaMozilla Reality / Firefox community) | HRTF personalization, ambisonics pipelines, and the psychoacoustics of presence |
-
-### Key Talking Points
-1. The audio presence paradox — why bad audio breaks immersion faster than bad video
-2. HRTFs: one-size-fits-all vs. personalized — can ML adapt in real-time?
-3. Ambisonics as the WebXR spatial audio missing layer
-4. Bluetooth latency: the 200ms elephant in the room (vs. the 20ms visual rule)
-5. Room acoustics simulation — can the web model reverberation in real-time?
-6. Why the WebXR spec has no first-class audio channel — and what it would take to add one
-
-### Discussion Prompts for Post-Episode
-- Is spatial audio a solved problem that's just poorly implemented, or is it genuinely unsolved at the spec level?
-- Should audio latency follow the same 20ms rule as visual latency, or does the brain tolerate different thresholds for different senses?
-- What would a "WebXR Audio Layer" 1.0 even look like?
-
+### Debate Arena
+**The spec gap as perceptual discrimination:** If the WebXR spec has no spatial audio channel, is that scope management or a form of sensory exclusion? The omnitone#2 finding that mobile browsers — where billions of users are — can't run spatial audio at all suggests the "visual-first" bias isn't just an oversight; it's a structural perceptual inequality.\n
 ---
 
 ## Episode 3 — "Interfaces Beyond the Flat Screen"
 
-**Core question:** *Is the WebXR spec blind to non-visual perception?*
+**Focus:** MR interfaces, hologram drift & wayfinding
+**Key Debate:** Is the WebXR spec blind to non-visual perception — and are we still designing MR for 2D?
 
-### Description
-We've built an entire generation of immersive interfaces around the screen as
-the primary output channel. But human perception is multimodal — haptic, proprioceptive,
-spatial. This episode argues that WebXR is fundamentally a visual-and-auditory
-spec that ignores the body's other perceptual channels, and explores what MR
-interfaces would look like if they were designed from the ground up for the
-full human sensorium.
+### Core Topics
+- Hologram drift: why virtual objects in MR slowly "slide" and how registration error erodes trust
+- **NEW from GitHub research:** MRC#228 — SpectatorView calibration works once and never twice; fundamental research reproducibility blocker for MR
+- **NEW:** MRC#221 — Holograms that "stick to camera" instead of staying anchored break the core promise of mixed reality
+- Hand tracking fidelity: from 21-jointed skeletal hands to fine diaphragmatic gesture
+- Wayfinding in mixed reality: cognitive maps, landmarks, and the 3D navigation UX problem
+- **NEW:** webxr#992 — Users in immersive XR sessions can't find content that wasn't visible when they entered (36 comments)
+- **NEW:** webxr#815 — Spec language precludes non-visual uses (41 comments, 8 years open)
+- The WebXR spec's visual bias: non-visual modalities are extensions, not primitives
+- MR interface design patterns: platelets, menus-at-arm's-length, and the "air tap" standardization problem
+- Eye tracking as the next input layer: foveated rendering + intent detection
+- **NEW:** MRTK#914 — MX Ink MR Stylus for Meta Quest; platform convergence without interface abstraction
+- **NEW:** MRTK#511 — Vendor Plugin Architecture: should vendor-specific RealityProviders live inside MRTK core?
+- **NEW:** AR.js #833/#834 — City-scale markerless AR breaks because local SLAM doesn't scale to global reference frames; geospatial AR needs earth-centered coordinates
+- The "cognitive load" crisis: when every surface is a UI, what do you look at?
 
-### GitHub Debate Anchors
+### GitHub Sources & Hot Issues
+- [immersive-web/webxr#815](https://github.com/immersive-web/webxr/issues/815) — Spec Language Precludes Non-Visual Uses (41 comments)
+- [immersive-web/webxr#992](https://github.com/immersive-web/webxr/issues/992) — Content in Immersive Session Search Around (36 comments)
+- [microsoft/MixedRealityCompanionKit#228](https://github.com/microsoft/MixedRealityCompanionKit/issues/228) — SpectatorView Calibration Instability (19 comments)
+- [microsoft/MixedRealityCompanionKit#221](https://github.com/microsoft/MixedRealityCompanionKit/issues/221) — Holograms Sticking to Camera (18 comments)
+- [MixedRealityToolkit/MixedRealityToolkit-Unity#914](https://github.com/MixedRealityToolkit/MixedRealityToolkit-Unity/issues/914) — MX Ink MR Stylus for Meta Quest
+- [MixedRealityToolkit/MixedRealityToolkit-Unity#511](https://github.com/MixedRealityToolkit/MixedRealityToolkit-Unity/issues/511) — Vendor Plugin Architecture
+- [AR-js-org/AR.js#833](https://github.com/AR-js-org/AR.js/issues/833) — Markerless location-based AR, more realistic placement
+- [AR-js-org/AR.js#681](https://github.com/AR-js-org/AR.js/issues/681) — AR.js-next: ECS architecture & roadmap
+- [microsoft/MixedRealityToolkit-Unity PR#2795](https://github.com/microsoft/MixedRealityToolkit-Unity/pull/2795) — Alternate Solver Handler Scene Object attachment (instability in spatial tracking)
 
-| Issue | Repo | What It Reveals |
-|---|---|---|
-| [#1110](https://github.com/Igalia/wolvic/issues/1110) — *Spatial navigation support for AR/VR controllers with D-pads* | Igalia/wolvic | Labeled `enhancement, gecko` — 4 comments. The way we navigate 3D spaces assumes a gamepad paradigm. What about vocal navigation, gaze-based wayfinding, or proprioceptive shortcuts? |
-| [#993](https://github.com/Igalia/wolvic/issues/993) — *Add ability to access XRControllers as Gamepads in fullscreen mode* | Igalia/wolvic | `enhancement` — the fact that XR controllers must be "flattened" into gamepad API reveals a deeper problem: we're still squeezing spatial interfaces through 2D input models |
-| [#2071](https://github.com/Igalia/wolvic/issues/2071) — *launch_immersive_element_xpath on Chromium* | Igalia/wolvic | Chromium-specific — how do we even *identify* and *launch* immersive elements? The spec barely addresses the discovery problem for MR interfaces |
-| [#833](https://github.com/jeromeetienne/AR.js/issues/833) — *How to create Markerless AR visible in the entire territory of a city* | AR-js-org/AR.js | 1 comment — city-scale AR demands a fundamentally different interface paradigm than marker-based tracking. You can't "tag" a building; you need to *inhabit* it |
-| [#834](https://github.com/jeromeetienne/AR.js/issues/834) — *Geospatial* | AR-js-org/AR.js | The geospatial feature request reveals a gap: AR.js handles localtracking, but global-scale AR needs earth-centered reference frames and geopolitical coordinate systems |
+### Potential Guests
+- **jeromeetienne** — AR.js creator; the philosophical rebel who gave up on markerless and why
+- **nickw1** — AR.js location-based AR contributor; created arjs-peakfinder POI browser; deepest knowledge of AR drift and GPS-based challenges
+- **kalwalt** — AR.js current maintainer; holds the keys to AR.js's architectural future
+- **dogzilla** — Web AR community, MindAR fork maintainer; represents the for-the-people voice
+- **CoderSilas** — Web AR developer who found encantar.js as a successor; the canary in the coal mine
+- **kylebakerio** — WebXR/ARCore integration advocate; pragmatic position on markerless AR
+- **Yongsen Mao** — SpatialLM researcher; could discuss how 3D LLMs might enable "true" spatial understanding vs. local SLAM
+- **ddorwin** — WebXR co-editor; the spec's own voice on non-visual perception
 
-### Potential Guest Contributors
-
-| Name | Handle | Expertise |
-|---|---|---|
-| @jeromeetienne | AR.js creator | Geospatial AR, city-scale markerless tracking, the shift from local to global reference frames |
-| @hiukim | MindAR creator | ML-driven interface paradigms — hand tracking, body tracking, face tracking as non-visual input channels |
-| Mozilla Reality / Wolvic Contributors | @svillar, @NathanaelA, @Utopiah | WebXR spec designers who can speak to what the spec includes, what it omits, and what's on the roadmap |
-| Mixed Reality Researcher | (via Microsoft MRTK community) | Holographic remoting, spatial anchors, and the design of MR interfaces that persist in the physical world |
-
-### Key Talking Points
-1. The gamepad paradigm trap — why XRControllers are still gamepads in costume
-2. Haptic and proprioceptive channels — the perceptual dimensions WebXR hasn't touched yet
-3. Gaze-based and voice-based navigation as replacements for the D-pad metaphor
-4. Spatial anchors and persistent MR — who owns the coordinate frame?
-5. Geospatial AR and the shift from "local tracking" to "earth-centered reference frames"
-6. The discovery problem — how do users *find* and *launch* MR experiences?
-
-### Discussion Prompts for Post-Episode
-- If you could add one non-visual percept to the WebXR spec tomorrow, what would it be and why?
-- Is the "flat screen" paradigm actually limiting our thinking about XR interfaces, or is it a pragmatic starting point?
-- Should MR interfaces be designed for the body (proprioceptive) or for the gaze (foveative)?
-
----
-
-## Appendix: Complete GitHub Issue Audit
-
-### ValveSoftware/openvr — Perceptual Latency Track
-| # | Title | Reactions | Comments | Date | Perceptual Relevance |
-|---|---|---|---|---|---|
-| 1012 | Motion smoothing / interleaved reprojection control |— | 9 | 2019→2026 | 🔥 Core: can developers force reprojection? Perceptual side effects? |
-| 681 | Playspace pitch & roll rotation | — | 9 | 2017→2026 | 🔥 Spatial: restricted rotation breaks natural perception |
-| 1729 | GetTimeSinceLastVsync bad on AMD 7900 XTX | — | 3 | 2023→2026 | 🔥 Timing: GPU timestamp corruption → wrong predicted display time |
-| 1917 | xrWaitFrame returns success with negative predictedDisplayTime | — |0 | 2026→2026 | 🔥 Fundamental: runtime reports frame will display in the past |
-| 1921 | ComputeOverlayIntersection bad UX with many overlays | — | 0 | 2026 | ⚡ Compositing: overlay layering degrades spatial perception |
-
-### Igalia/wolvic — WebXR Interface Track
-| # | Title | Labels | Comments | Date | Perceptual Relevance |
-|---|---|---|---|---|---|
-| 1935 | Valve Steam Frame support | — | 12 | 2025→2026 | 🔥 Hardware abstraction: new devices strain the WebXR runtime model |
-| 1180 | Bluetooth audio delay setting | enhancement | 1 | 2024→2026 | 🔥 Audio: manual delay compensation reveals gap in spatial audio |
-| 1110 | Spatial navigation for AR/VR D-pads | enhancement, gecko | 4 | 2023→2026 | 🔥 Interface: 3D navigation still based on 2D gamepad metaphor |
-| 992 | WebXR Layers support | enhancement, chromium | 6 | 2023→2026 | 🔥 Spec: no first-class audio layer in WebXR |
-| 993 | XRControllers as Gamepads | enhancement | 3 | 2023→2026 | 🔥 Interface: flatting spatial input through 2D API |
-| 2071 | launch_immersive_element_xpath on Chromium | chromium | 1 | 2026 | ⚡ Discovery: how do users find immersive content? |
-
-### AR-js-org/AR.js — Spatial Computing Track
-| # | Title | Comments | Date | Perceptual Relevance |
-|---|---|---|---|---|
-| 833 | City-scale markerless AR |1 | 2024 | 🔥 Scale: local tracking breaks at city scale; needs global reference frames |
-| 834 | Geospatial | 0 | 2024 | 🔥 Reference: earth-centered coordinates for planetary AR |
-| 825 | Location-based AR not working | 4 | 2023 | ⚡ Practical: geospatial AR usability challenges |
-| 826 | ImageTracking demo doesn't work | 2 | 2023 | ⚡ Reliability: tracking confidence vs. perceptual stability |
+### Debate Arena
+**The Interface Paradigm Trap:** Despite being "spatial" computing, XR interfaces are still designed around 2D paradigms — gamepads flattened into Gamepad API (#993), 2D input devices traversing 3D space. Are we building "3D interfaces with 2D constraints" or "truly spatial interfaces"? The MRTK#511 vendor plugin decision and the webxr#815 spec language both suggest the answer is: we're still trapped in 2D, and the "3D" part is mostly visual.
 
 ---
 
-*Generated from live GitHub audit on_OPEN issues across 5 major AR/MR/Spatial Computing repositories. All debate anchors link to actual open issues with timestamp history.*
+## Cross-Episode Themes
+
+| Theme | Episodes | GitHub Anchor |
+|---|---|---|
+| **Perceptual ≠ Measured** | Ep 1, Ep 3 | ARCore #1779, WiVRn #1099, ALVR #334, MRC #228 |
+| **The Spec Gap as Discrimination** | Ep 2, Ep 3 | webxr #390 (8yr), webxr #815 (41c), omnitone #2 (10yr) |
+| **Presence vs. Fidelity** | Ep 1, Ep 2 | Foveated rendering, HRTF personalization, ISM bug |
+| **Open Source as the Battleground** | All | AR.js, MindAR, MRTK, WebXR spec repos |
+| **Accessibility as Design Driver** | Ep 2, Ep 3 | webxr #892 (audio-only), MRC #221 (registration) |
+| **The 20ms Rule** | Ep 1, Ep 3 | ARCore #1779, SteamVR #21, OpenXR #131 |
+| **Spatial Audio Has No Standard** | Ep 2 | webxr #390, omnitone #2, MRTK-WebRTC #573 |
+| **Registration Fragility** | Ep 3 | MRC #228, MRC #221, AR.js #833 |
+
+---
+
+## Production Notes
+
+- **Recording format:** Interview + live GitHub issue walkthrough
+- **Segment structure:** 20 min research deep-dive → 15 min guest interview → 10 min "Debate Arena" (hosted discussion of the week's hottest issue)
+- **GitHub integration:** Each episode links to 3–5 real open issues; listeners can join the discussion
+- **Editorial cadence:** Bi-weekly release, with "mid-week briefs" on breaking issues
+- **New:** Each episode should include a "Source Audit" segment linking directly to the GitHub issues that surfaced the topic
+
+---
+
+## Guest Outreach Tracker
+
+| Guest | Episode | Status | Notes |
+|---|---|---|---|
+| jeromeetienne | Ep 1, Ep 3 | ☐ Not contacted | AR.js creator, 15.8k ⭐ |
+| hiukim | Ep 1 | ☐ Not contacted | MindAR creator, 2.7k ⭐ |url=https://github.com/hiukim/mind-ar-js/issues/526</a> |
+| Nicolò Carpignoli | Ep 1 | ☐ Not contacted | AR.js former maintainer; markerless AR authority |
+| xytovl | Ep 1 | ☐ Not contacted | WiVRn creator; OpenXR latency expert |
+| param-fsd | Ep 1 | ☐ Not contacted | MindAR tracking stability researcher |
+| cwilso | Ep 1, Ep 2 | ☐ Not contacted | WebXR spec editor; spatial audio #390 |
+| toji | Ep 2 | ☐ Not contacted | WebXR a11y advocate; #892 |
+| ddorwin | Ep 2, Ep 3 | ☐ Not contacted | WebXR co-editor; non-visual perception |
+| david-c-kline | Ep 2 | ☐ Not contacted | MRTK spatial audio PR author |
+| misslivirose | Ep 2 | ☐ Not contacted | Hubs spatial audio & accessibility lead |
+| yongsen_mao | Ep 1, Ep 2, Ep 3 | ☐ Not contacted | SpatialLM lead (NeurIPS 2025) |
+| nickw1 | Ep 3 | ☐ Not contacted | AR.js location-based AR; arjs-peakfinder |
+| kalwalt | Ep 3 | ☐ Not contacted | AR.js current maintainer |
+| dogzilla | Ep 3 | ☐ Not contacted | Web AR community; MindAR fork |
+| CoderSilas | Ep 3 | ☐ Not contacted | Web AR developer; encantar.js explorer |
+| kylebakerio | Ep 3 | ☐ Not contacted | WebXR/ARCore integration advocate |
+
+*Last updated: September 2026 — GitHub-research backed from live issue audit*
